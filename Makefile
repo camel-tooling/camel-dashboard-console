@@ -19,7 +19,7 @@
 #
 SHELL := /bin/bash
 
-PLUGIN_VERSION := 0.1.0
+PLUGIN_VERSION := 0.1.1
 PLUGIN_NAME := camel-openshift-console-plugin
 PLUGIN_NAMESPACE := camel-dashboard
 PLUGIN_IMAGE := quay.io/camel-tooling/camel-openshift-console-plugin
