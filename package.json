@@ -1,6 +1,6 @@
 {
   "name": "camel-openshift-console-plugin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Camel OpenShift Console Plugin",
   "private": true,
   "license": "Apache-2.0",
@@ -79,7 +79,7 @@
   },
   "consolePlugin": {
     "name": "camel-openshift-console-plugin",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "displayName": "Camel OpenShift Console Plugin",
     "description": "Camel OpenShift Console Plugin.",
     "exposedModules": {
