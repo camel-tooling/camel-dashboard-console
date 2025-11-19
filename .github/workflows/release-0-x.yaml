@@ -1,12 +1,14 @@
-name: release-0.1.x
+name: release-0.x.x
 
 on:
   pull_request:
     branches:
       - "release-0.1.x"
+      - "release-0.2.x"
   push:
     branches:
       - "release-0.1.x"
+      - "release-0.2.x"
   workflow_dispatch:
 
 concurrency:
@@ -35,7 +37,7 @@ jobs:
         run: make lint
 
       - name: Log in to registry
-        if:  github.ref == 'refs/heads/release-0.1.x'
+        if:  github.ref == 'refs/heads/release-0.1.x' || github.ref == 'refs/heads/release-0.2.x'
         id: login-registry
         uses: redhat-actions/podman-login@v1
         with:
@@ -49,7 +51,7 @@ jobs:
           make CUSTOM_PLUGIN_IMAGE=quay.io/camel-tooling/camel-openshift-console-plugin image
 
       - name: Push plugin container
-        if:  github.ref == 'refs/heads/release-0.1.x'
+        if:  github.ref == 'refs/heads/release-0.1.x' || github.ref == 'refs/heads/release-0.2.x'
         shell: bash
         run: |
           make CUSTOM_PLUGIN_IMAGE=quay.io/camel-tooling/camel-openshift-console-plugin push
