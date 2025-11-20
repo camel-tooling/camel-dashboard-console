@@ -16,25 +16,31 @@ const CamelAppHealth: React.FC<CamelAppHealthProps> = ({ health }) => {
   // FIXME: manage undefined
   switch (health?.toLowerCase()) {
     case 'ok':
+      return (
+        <>
+          <GreenCheckCircleIcon title={t("OK")} />
+          &nbsp;&nbsp;{t("OK")}
+        </>
+      );
     case 'success':
       return (
         <>
-          <GreenCheckCircleIcon title={t(health)} />
-          &nbsp;&nbsp;{t(health)}
+          <GreenCheckCircleIcon title={t("Success")} />
+          &nbsp;&nbsp;{t("Success")}
         </>
       );
     case 'warning':
       return (
         <>
-          <YellowExclamationTriangleIcon title={t(health)} />
-          &nbsp;&nbsp;{t(health)}
+          <YellowExclamationTriangleIcon title={t("Warning")} />
+          &nbsp;&nbsp;{t("Warning")}
         </>
       );
     case 'error':
       return (
         <>
-          <RedExclamationCircleIcon title={t(health)} />
-          &nbsp;&nbsp;{t(health)}
+          <RedExclamationCircleIcon title={t("Error")} />
+          &nbsp;&nbsp;{t("Error")}
         </>
       );
     default:

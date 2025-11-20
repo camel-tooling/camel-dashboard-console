@@ -6,6 +6,20 @@
   color: var(--pf-global--palette--blue-400);
 }
 
+/* Fix list page width to match standard OpenShift Console pages */
+.co-m-list {
+  max-width: 100%;
+  padding-left: var(--pf-v6-global--spacer--lg, 24px);
+  padding-right: var(--pf-v6-global--spacer--lg, 24px);
+}
+
+/* Fix detail page width to match standard OpenShift Console pages */
+.co-m-pane {
+  max-width: 100%;
+  padding-left: var(--pf-v6-global--spacer--lg, 24px);
+  padding-right: var(--pf-v6-global--spacer--lg, 24px);
+}
+
 .co-m-resource-camel {
   padding:1px 4px;
   background-color: transparent;
@@ -20,7 +34,7 @@
 .camel-icon {
   height: 18px;
   width: 18px;
-  margin-bottom: -4px;  
+  margin-bottom: -4px;
 }
 
 .camel-icon--lg {

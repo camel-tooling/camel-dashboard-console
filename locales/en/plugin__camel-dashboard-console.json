@@ -21,6 +21,7 @@
   "Create a new Camel Application": "Create a new Camel Application",
   "Details": "Details",
   "Endpoints": "Endpoints",
+  "Error": "Error",
   "Exchange": "Exchange",
   "failed": "failed",
   "Failed exchanges": "Failed exchanges",
@@ -41,6 +42,7 @@
   "No camel version": "No camel version",
   "No namespace": "No namespace",
   "No runtime provider": "No runtime provider",
+  "OK": "OK",
   "pending": "pending",
   "Percentage of success rate": "Percentage of success rate",
   "Pod port:": "Pod port:",
@@ -56,6 +58,7 @@
   "Status": "Status",
   "Status message": "Status message",
   "succeed": "succeed",
+  "Success": "Success",
   "Success percentage": "Success percentage",
   "The <2>Apache Camel CLI</2>, powered by JBang, is a command-line tool for rapid prototyping. It allows you to run Camel routes directly from a single file, without the need for a full Maven or Gradle project. By using the additional Camel JBang Kubernetes plugin, you can also automate the build and deployment process for OpenShift.": "The <2>Apache Camel CLI</2>, powered by JBang, is a command-line tool for rapid prototyping. It allows you to run Camel routes directly from a single file, without the need for a full Maven or Gradle project. By using the additional Camel JBang Kubernetes plugin, you can also automate the build and deployment process for OpenShift.",
   "Time since the last message": "Time since the last message",
@@ -67,5 +70,6 @@
   "Uptime": "Uptime",
   "View dashboards": "View dashboards",
   "View Hawtio": "View Hawtio",
-  "View Logs": "View Logs"
+  "View Logs": "View Logs",
+  "Warning": "Warning"
 }

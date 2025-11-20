@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  DocumentTitle,
   ListPageBody,
   ListPageFilter,
   ListPageHeader,
@@ -50,36 +51,43 @@ const CamelAppList: React.FC<CamelAppProps> = () => {
 
   return !operatorInstalled ? (
     <>
+      <DocumentTitle>{t('Camel Applications')}</DocumentTitle>
       <NamespaceBar onNamespaceChange={setActiveNamespace} />
       <ListPageHeader title={t('Camel Applications')} />
       <CamelAppNotAvailable />
     </>
   ) : (
     <>
+      <DocumentTitle>{t('Camel Applications')}</DocumentTitle>
       <NamespaceBar onNamespaceChange={setActiveNamespace} />
-
-      <ListPageHeader title={t('Camel Applications')} />
-
-      <ListPageBody>
-        <ListPageFilter
-          data={staticData}
-          onFilterChange={onFilterChange}
-          loaded={loaded}
-          rowFilters={camelAppRowFilters(CamelApps)}
-        />
-
-        <VirtualizedTable
-          EmptyMsg={() => <CamelAppListEmpty />}
-          columns={columns}
-          data={filteredData}
-          loaded={loaded}
-          loadError={error}
-          Row={CamelAppRow}
-          unfilteredData={staticData}
-        />
-        <br />
-        {staticData.length > 0 ? <CamelNewProjectAlert isExpandable /> : <></>}
-      </ListPageBody>
+      <div className="co-m-list">
+        <ListPageHeader title={t('Camel Applications')} />
+        <ListPageBody>
+          <div>
+            <ListPageFilter
+              data={staticData}
+              onFilterChange={onFilterChange}
+              loaded={loaded}
+              rowFilters={camelAppRowFilters(CamelApps)}
+            />
+            <div className="pf-v6-l-grid">
+              <div className="pf-v6-l-grid__item">
+                <VirtualizedTable
+                  EmptyMsg={() => <CamelAppListEmpty />}
+                  columns={columns}
+                  data={filteredData}
+                  loaded={loaded}
+                  loadError={error}
+                  Row={CamelAppRow}
+                  unfilteredData={staticData}
+                />
+                <br />
+                {staticData.length > 0 ? <CamelNewProjectAlert isExpandable /> : <></>}
+              </div>
+            </div>
+          </div>
+        </ListPageBody>
+      </div>
     </>
   );
 };

@@ -17,7 +17,7 @@ The project is created using [openshift console plugin template](https://github.
 **Current version: 0.3.0**
 
 It requires:
-* OpenShift 4.19
+* OpenShift 4.20
 * [Camel Dashboard Operator](https://github.com/camel-tooling/camel-dashboard-operator)
 
 
@@ -63,7 +63,7 @@ podman build -t quay.io/camel-tooling/camel-dashboard-console:latest .
 podman push quay.io/camel-tooling/camel-dashboard-console:latest
 ```
 
-**Note**: The image `quay.io/camel-tooling/camel-dashboard-console:0.2.3` is published so it can be pulled instead.
+**Note**: The image `quay.io/camel-tooling/camel-dashboard-console:0.3.0` is published so it can be pulled instead.
 
 ### Deploying the plugin using Helm
 

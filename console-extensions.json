@@ -46,7 +46,7 @@
       ]
     },
     "properties": {
-      "id": "camel",
+      "id": "camel-standalone",
       "name": "%plugin__camel-dashboard-console~Camel%",
       "href": "/camel",
       "perspective": "dev",
@@ -57,7 +57,7 @@
   {
     "type": "console.navigation/href",
     "properties": {
-      "id": "camel",
+      "id": "camel-workload",
       "name": "%plugin__camel-dashboard-console~Camel%",
       "href": "/camel",
       "perspective": "admin",

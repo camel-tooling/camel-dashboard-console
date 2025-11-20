@@ -48,13 +48,13 @@ export const PopoverCamelHealth: React.FC<PopoverCamelHealthProps> = ({
             ) : (
               <Trans t={t}>
                 <h4>Service Level Indicator</h4>
-                <CamelAppHealth health="Error" />: &gt; 10 % failed exchanges
+                <CamelAppHealth health="error" />: &gt; 10 % failed exchanges
                 <br />
-                <CamelAppHealth health="Warning" />: &gt; 5 % failed exchanges
+                <CamelAppHealth health="warning" />: &gt; 5 % failed exchanges
                 <br />
-                <CamelAppHealth health="OK" />: healthy
+                <CamelAppHealth health="ok" />: healthy
                 <br />
-                <CamelAppHealth health="Unknown" />: no informations
+                <CamelAppHealth health="unknown" />: no informations
                 <br />
               </Trans>
             )}
