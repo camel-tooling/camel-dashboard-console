@@ -72,3 +72,8 @@ camelAppRbac:
 #        name: camel-developer
 #        namespace: openshift-monitoring
 
+hawtio:
+  # Install Hawtio automatically
+  # If Hawtio is already installed or not required
+  # then change this to false
+  enabled: true

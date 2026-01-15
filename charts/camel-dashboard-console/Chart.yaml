@@ -11,3 +11,9 @@ keywords:
   - react
 sources:
   - https://github.com/camel-tooling/camel-dashboard-console.git
+dependencies:
+  - name: hawtio-online-console-plugin
+    version: 0.6.1
+    repository: "https://hawtio.github.io/hawtio-charts"
+    # If the user sets 'hawtio.enabled' to false, the sub-chart is skipped.
+    condition: hawtio.enabled
