@@ -18,6 +18,8 @@
     "lint": "yarn eslint src integration-tests --fix && stylelint 'src/**/*.css' --allow-empty-input --fix",
     "test-cypress": "cd integration-tests && cypress open",
     "test-cypress-headless": "cd integration-tests && node --max-old-space-size=4096 ../node_modules/.bin/cypress run --browser ${BRIDGE_E2E_BROWSER_NAME:=electron}",
+    "test-cypress-skip-helm": "SKIP_HELM_INSTALL=true yarn run test-cypress",
+    "test-cypress-headless-skip-helm": "SKIP_HELM_INSTALL=true yarn run test-cypress-headless",
     "cypress-merge": "mochawesome-merge ./integration-tests/screenshots/cypress_report*.json > ./integration-tests/screenshots/cypress.json",
     "cypress-generate": "marge -o ./integration-tests/screenshots/ -f cypress-report -t 'Camel OpenShift Console Plugin Cypress Test Results' -p 'Camel OpenShift Cypress Plugin Test Results' --showPassed false --assetsDir ./integration-tests/screenshots/cypress/assets ./integration-tests/screenshots/cypress.json",
     "cypress-postreport": "yarn cypress-merge && yarn cypress-generate",

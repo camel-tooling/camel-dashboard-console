@@ -35,8 +35,11 @@ __webpackConfig__.txt
 **/dist
 **/.DS_Store
 .devcontainer/dev.env
-integration-tests/videos
-integration-tests/screenshots
+
+# Cypress test artifacts
+integration-tests/artifacts/
+integration-tests/screenshots/
+integration-tests/videos/
 
 tls-certificates/*.crt
 tls-certificates/*.key

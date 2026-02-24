@@ -1,3 +1,5 @@
+export {};
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -8,7 +10,6 @@ declare global {
 }
 
 const KUBEADMIN_USERNAME = 'kubeadmin';
-const loginUsername = Cypress.env('BRIDGE_KUBEADMIN_PASSWORD') ? 'user-dropdown' : 'username';
 
 // This will add 'cy.login(...)'
 // ex: cy.login('my-user', 'my-password')
@@ -27,7 +28,7 @@ Cypress.Commands.add('login', (username: string, password: string) => {
     cy.get('#inputPassword').type(password || Cypress.env('BRIDGE_KUBEADMIN_PASSWORD'));
     cy.get('button[type=submit]').click();
 
-    cy.get(`[data-test="${loginUsername}"]`).should('be.visible');
+    cy.get('[data-test="username"]').should('be.visible');
   });
 });
 
@@ -37,7 +38,7 @@ Cypress.Commands.add('logout', () => {
     if (win.SERVER_FLAGS?.authDisabled) {
       return;
     }
-    cy.get('[data-test="user-dropdown"]').click();
+    cy.get('[data-test="user-dropdown-toggle"]').click();
     cy.get('[data-test="log-out"]').should('be.visible');
     cy.get('[data-test="log-out"]').click({ force: true });
   });
