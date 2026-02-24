@@ -37,7 +37,7 @@ const CamelAppRow: React.FC<RowProps<K8sResourceKind>> = ({ obj: camelInt, activ
 
   return (
     <>
-      <TableData id="name" activeColumnIDs={activeColumnIDs}>
+      <TableData id="name" activeColumnIDs={activeColumnIDs} data-test-rows="resource-row">
         <span className="co-resource-item co-resource-item--truncate">
           <span className="co-m-resource-icon co-m-resource-camel">
             <img src={CamelImage} alt="Camel" className="camel-icon" />
@@ -48,6 +48,7 @@ const CamelAppRow: React.FC<RowProps<K8sResourceKind>> = ({ obj: camelInt, activ
             className="co-resource-item__resource-name"
             title={camelInt.metadata.name}
             onClick={handleClick}
+            data-test="camelapp-link"
           >
             {camelInt.metadata.name}
           </Link>
