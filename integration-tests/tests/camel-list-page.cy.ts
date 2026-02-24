@@ -47,10 +47,9 @@ describe('Camel Dashboard Console - List Page', () => {
     // Check for VirtualizedTable or empty state
     cy.get('body').then(($body) => {
       // If there are no CamelApps, empty state should be shown
-      // The VirtualizedTable shows EmptyMsg component when no data
-      if ($body.find('.pf-v6-c-empty-state').length > 0) {
+      if ($body.find('[data-test="camelapp-list-empty"]').length > 0) {
         cy.log('Empty state is displayed');
-        cy.get('.pf-v6-c-empty-state').should('be.visible');
+        cy.byTestID('camelapp-list-empty').should('be.visible');
       } else {
         cy.log('CamelApps exist in the cluster - skipping empty state test');
       }

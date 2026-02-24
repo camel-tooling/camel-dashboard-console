@@ -41,7 +41,7 @@ const CamelAppTitle: React.FC<CamelAppTitleProps> = ({ name, obj }) => {
           </Breadcrumb>
         }
         title={
-          <div className="co-m-pane__heading co-resource-item">
+          <div className="co-m-pane__heading co-resource-item" data-test="camelapp-title">
             <span className="co-resource-item">
               <span className="pf-v6-u-screen-reader">C</span>
               <span
@@ -50,7 +50,7 @@ const CamelAppTitle: React.FC<CamelAppTitleProps> = ({ name, obj }) => {
               >
                 <img src={CamelImage} alt="Camel" className="camel-icon--lg" />
               </span>
-              <span className="co-resource-item__resource-name">{name}</span>
+              <span className="co-resource-item__resource-name" data-test="camelapp-name">{name}</span>
             </span>
             <ResourceStatus>
               <Status status={obj?.status?.phase} />
