@@ -14,7 +14,7 @@ const CamelAppMetrics: React.FC<CamelAppMetricsProps> = ({ obj: camelInt }) => {
   const queries = useResourceMetricsQueries(camelInt);
 
   return (
-    <PageSection>
+    <PageSection data-test="camelapp-metrics-tab">
       {queries ? (
         <Grid hasGutter>
           <ResourceMetricsCard

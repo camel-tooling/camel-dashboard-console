@@ -111,18 +111,18 @@ describe('Camel Dashboard Console - Details Page', () => {
     // Navigate directly to details page
     cy.visit(`/camel/app/ns/${testCamelApp.namespace}/name/${testCamelApp.name}`);
 
-    // Wait for page to load (.co-m-pane is the main container)
-    cy.get('.co-m-pane', { timeout: 10000 }).should('be.visible');
+    // Wait for page to load using data-test attribute
+    cy.byTestID('camelapp-details-page', { timeout: 10000 }).should('be.visible');
 
-    // Verify the page contains the CamelApp name (it's in the title component)
-    cy.get('.co-m-pane').should('contain', testCamelApp.name);
+    // Verify the page title contains the CamelApp name
+    cy.byTestID('camelapp-name').should('contain', testCamelApp.name);
   });
 
   it('displays all three tabs: Details, Resources, and Metrics', () => {
     cy.visit(`/camel/app/ns/${testCamelApp.namespace}/name/${testCamelApp.name}`);
 
     // Wait for page to load
-    cy.get('.co-m-pane', { timeout: 10000 }).should('be.visible');
+    cy.byTestID('camelapp-details-page', { timeout: 10000 }).should('be.visible');
 
     // HorizontalNav renders as a nav element with tabs
     // Verify all three tab links exist
@@ -135,7 +135,7 @@ describe('Camel Dashboard Console - Details Page', () => {
     cy.visit(`/camel/app/ns/${testCamelApp.namespace}/name/${testCamelApp.name}`);
 
     // Wait for page to load
-    cy.get('.co-m-pane', { timeout: 10000 }).should('be.visible');
+    cy.byTestID('camelapp-details-page', { timeout: 10000 }).should('be.visible');
 
     // Give it a moment for loading overlay to clear
     cy.wait(2000);
@@ -143,53 +143,57 @@ describe('Camel Dashboard Console - Details Page', () => {
     // Click Resources tab (force in case overlay is present)
     cy.contains('Resources').click({ force: true });
 
-    // Verify URL changed
+    // Verify URL changed and correct tab content is displayed
     cy.url().should('include', '/resources');
+    cy.byTestID('camelapp-resources-tab').should('be.visible');
 
     // Click Metrics tab
     cy.contains('Metrics').click({ force: true });
 
-    // Verify URL changed
+    // Verify URL changed and correct tab content is displayed
     cy.url().should('include', '/metrics');
+    cy.byTestID('camelapp-metrics-tab').should('be.visible');
 
     // Click Details tab to go back
     cy.contains('Details').click({ force: true });
 
-    // Verify we're back to details (no /resources or /metrics in URL)
+    // Verify we're back to details
     cy.url().should('not.include', '/resources');
     cy.url().should('not.include', '/metrics');
+    cy.byTestID('camelapp-details-tab').should('be.visible');
   });
 
   it('Details tab shows CamelApp information', () => {
     cy.visit(`/camel/app/ns/${testCamelApp.namespace}/name/${testCamelApp.name}`);
 
     // Wait for page to load
-    cy.get('.co-m-pane', { timeout: 10000 }).should('be.visible');
+    cy.byTestID('camelapp-details-page', { timeout: 10000 }).should('be.visible');
 
-    // The details page should show some content
-    // Just verify the page is not empty and has the CamelApp name
-    cy.get('.co-m-pane').should('not.be.empty');
-    cy.get('.co-m-pane').should('contain', testCamelApp.name);
+    // Verify the Details tab content is displayed
+    cy.byTestID('camelapp-details-tab').should('be.visible').and('not.be.empty');
+
+    // Verify the CamelApp name is displayed in the title
+    cy.byTestID('camelapp-name').should('contain', testCamelApp.name);
   });
 
   it('Resources tab loads and displays content', () => {
     cy.visit(`/camel/app/ns/${testCamelApp.namespace}/name/${testCamelApp.name}/resources`);
 
     // Wait for page to load
-    cy.get('.co-m-pane', { timeout: 10000 }).should('be.visible');
+    cy.byTestID('camelapp-details-page', { timeout: 10000 }).should('be.visible');
 
-    // Resources tab should display some content
-    cy.get('.co-m-pane').should('not.be.empty');
+    // Verify Resources tab content is displayed
+    cy.byTestID('camelapp-resources-tab').should('be.visible').and('not.be.empty');
   });
 
   it('Metrics tab loads', () => {
     cy.visit(`/camel/app/ns/${testCamelApp.namespace}/name/${testCamelApp.name}/metrics`);
 
     // Wait for page to load
-    cy.get('.co-m-pane', { timeout: 10000 }).should('be.visible');
+    cy.byTestID('camelapp-details-page', { timeout: 10000 }).should('be.visible');
 
-    // Metrics tab should display something (charts, empty state, or error)
-    cy.get('.co-m-pane').should('not.be.empty');
+    // Verify Metrics tab is displayed
+    cy.byTestID('camelapp-metrics-tab').should('be.visible');
   });
 
   it('navigates from list page to details page', () => {
@@ -207,8 +211,8 @@ describe('Camel Dashboard Console - Details Page', () => {
     // Verify we're on a details page
     cy.url().should('match', /\/camel\/app\/ns\/[^/]+\/name\/[^/]+/);
 
-    // Verify the page loaded
-    cy.get('.co-m-pane', { timeout: 10000 }).should('be.visible');
+    // Verify the details page loaded
+    cy.byTestID('camelapp-details-page', { timeout: 10000 }).should('be.visible');
   });
 
   it('namespace bar is disabled on details page', () => {

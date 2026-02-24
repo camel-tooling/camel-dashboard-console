@@ -60,7 +60,7 @@ const CamelAppResources: React.FC<CamelAppResourcesProps> = ({ obj: camelInt }) 
 
   return (
     <>
-      <PageSection>
+      <PageSection data-test="camelapp-resources-tab">
         <Title headingLevel="h2">{t('Resources')}</Title>
       </PageSection>
       <PageSection>

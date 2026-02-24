@@ -34,7 +34,7 @@ const CamelApp: React.FC = () => {
   return (
     <>
       <NamespaceBar isDisabled />
-      <div className="co-m-pane">
+      <div className="co-m-pane" data-test="camelapp-details-page">
         <CamelAppTitle name={name} namespace={namespace} obj={CamelApp} />
         <HorizontalNav pages={pages} resource={CamelApp} contextId="camel-dashboard-tabs" />
       </div>
