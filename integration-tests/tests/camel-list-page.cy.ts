@@ -34,7 +34,10 @@ describe('Camel Dashboard Console - List Page', () => {
 
   it('displays the Camel Applications list page', () => {
     // Verify page title
-    cy.get('[data-test="page-heading"]', { timeout: 10000 }).should('contain', 'Camel Applications');
+    cy.get('[data-test="page-heading"]', { timeout: 10000 }).should(
+      'contain',
+      'Camel Applications',
+    );
 
     // Verify namespace bar is present
     cy.get('.co-namespace-bar').should('exist');

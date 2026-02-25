@@ -206,7 +206,10 @@ describe('Camel Dashboard Console - Details Page', () => {
     cy.wait(3000); // Wait for data to load
 
     // Click on the first CamelApp
-    cy.get('[data-test-rows="resource-row"]').first().find('[data-test="camelapp-link"]').click({ force: true });
+    cy.get('[data-test-rows="resource-row"]')
+      .first()
+      .find('[data-test="camelapp-link"]')
+      .click({ force: true });
 
     // Verify we're on a details page
     cy.url().should('match', /\/camel\/app\/ns\/[^/]+\/name\/[^/]+/);

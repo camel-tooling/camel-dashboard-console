@@ -11,16 +11,16 @@ declare global {
     interface Chainable {
       byTestID(
         selector: string,
-        options?: Partial<Loggable & Timeoutable & Withinable & Shadow>
+        options?: Partial<Loggable & Timeoutable & Withinable & Shadow>,
       ): Chainable<Element>;
       byLegacyTestID(
         selector: string,
-        options?: Partial<Loggable & Timeoutable & Withinable & Shadow>
+        options?: Partial<Loggable & Timeoutable & Withinable & Shadow>,
       ): Chainable<Element>;
       byTestActionID(selector: string): Chainable<Element>;
       byTestSelector(
         selector: string,
-        options?: Partial<Loggable & Timeoutable & Withinable & Shadow>
+        options?: Partial<Loggable & Timeoutable & Withinable & Shadow>,
       ): Chainable<JQuery<HTMLElement>>;
     }
   }
@@ -30,22 +30,16 @@ declare global {
 
 Cypress.Commands.add(
   'byTestID',
-  (
-    selector: string,
-    options?: Partial<Loggable & Timeoutable & Withinable & Shadow>
-  ) => {
+  (selector: string, options?: Partial<Loggable & Timeoutable & Withinable & Shadow>) => {
     cy.get(`[data-test="${selector}"]`, options);
-  }
+  },
 );
 
 Cypress.Commands.add(
   'byLegacyTestID',
-  (
-    selector: string,
-    options?: Partial<Loggable & Timeoutable & Withinable & Shadow>
-  ) => {
+  (selector: string, options?: Partial<Loggable & Timeoutable & Withinable & Shadow>) => {
     cy.get(`[data-test-id="${selector}"]`, options);
-  }
+  },
 );
 
 Cypress.Commands.add('byTestActionID', (selector: string) => {
@@ -54,10 +48,7 @@ Cypress.Commands.add('byTestActionID', (selector: string) => {
 
 Cypress.Commands.add(
   'byTestSelector',
-  (
-    selector: string,
-    options?: Partial<Loggable & Timeoutable & Withinable & Shadow>
-  ) => {
+  (selector: string, options?: Partial<Loggable & Timeoutable & Withinable & Shadow>) => {
     cy.get(`[data-test-selector="${selector}"]`, options);
-  }
+  },
 );
