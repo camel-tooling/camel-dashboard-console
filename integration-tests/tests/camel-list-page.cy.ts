@@ -1,6 +1,5 @@
-import { checkErrors, testName } from '../support';
+import { checkErrors } from '../support';
 
-const PLUGIN_NAME = 'camel-dashboard-console';
 const SKIP_HELM_INSTALL = Cypress.env('SKIP_HELM_INSTALL') === 'true';
 
 describe('Camel Dashboard Console - List Page', () => {
