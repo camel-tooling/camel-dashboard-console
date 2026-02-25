@@ -33,8 +33,12 @@ describe('Camel Dashboard Console - Details Page', () => {
     // This ensures the API call has completed
     cy.get('.co-m-list', { timeout: 15000 }).should('be.visible');
 
-    // Give the table a moment to render rows after data loads
-    cy.wait(3000);
+    // Wait for rows to render or empty state to appear
+    cy.get('body', { timeout: 10000 }).should(($body) => {
+      const hasRows = $body.find('[data-test-rows="resource-row"]').length > 0;
+      const hasEmptyState = $body.find('.pf-v6-c-empty-state').length > 0;
+      expect(hasRows || hasEmptyState).to.be.true;
+    });
 
     // Try to find a CamelApp in the list
     cy.get('body', { timeout: 10000 }).then(($body) => {
@@ -136,10 +140,15 @@ describe('Camel Dashboard Console - Details Page', () => {
     // Wait for page to load
     cy.byTestID('camelapp-details-page', { timeout: 10000 }).should('be.visible');
 
-    // Give it a moment for loading overlay to clear
-    cy.wait(2000);
+    // Close any modal/popup that might be showing (which would cause the backdrop)
+    cy.get('body').then(($body) => {
+      if ($body.find('.pf-v6-c-modal-box').length > 0) {
+        cy.get('.pf-v6-c-modal-box__close button').click({ force: true });
+        cy.get('.pf-v6-c-backdrop', { timeout: 5000 }).should('not.exist');
+      }
+    });
 
-    // Click Resources tab (force in case overlay is present)
+    // Click Resources tab
     cy.contains('Resources').click({ force: true });
 
     // Verify URL changed and correct tab content is displayed
@@ -202,7 +211,9 @@ describe('Camel Dashboard Console - Details Page', () => {
     // Wait for list to load
     cy.get('[data-test="page-heading"]', { timeout: 10000 }).should('exist');
     cy.get('.co-m-list', { timeout: 15000 }).should('be.visible');
-    cy.wait(3000); // Wait for data to load
+
+    // Wait for at least one row to appear
+    cy.get('[data-test-rows="resource-row"]', { timeout: 10000 }).should('have.length.at.least', 1);
 
     // Click on the first CamelApp
     cy.get('[data-test-rows="resource-row"]')

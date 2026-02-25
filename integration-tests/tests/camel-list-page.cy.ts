@@ -96,10 +96,10 @@ describe('Camel Dashboard Console - List Page', () => {
     cy.get('body').then(($body) => {
       if ($body.find('.pf-v6-c-modal-box').length > 0) {
         cy.get('.pf-v6-c-modal-box__close button').click({ force: true });
+        // Wait for modal to close
+        cy.get('.pf-v6-c-modal-box', { timeout: 5000 }).should('not.exist');
       }
     });
-
-    cy.wait(2000);
 
     // Navigate via sidebar
     cy.get('#page-sidebar').then(($sidebar) => {

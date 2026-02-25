@@ -99,8 +99,8 @@ describe('Camel Dashboard Console plugin test', () => {
       }
     });
 
-    // Wait for console to initialize
-    cy.wait(2000);
+    // Wait for console sidebar to be ready
+    cy.get('#page-sidebar', { timeout: 10000 }).should('be.visible');
 
     // Try to find Camel in the sidebar - it could be under Workloads (admin) or Resources (dev)
     cy.get('#page-sidebar').then(($sidebar) => {
