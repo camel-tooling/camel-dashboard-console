@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { K8sResourceKind, RowProps, TableData, Timestamp } from '@openshift-console/dynamic-plugin-sdk';
+import {
+  K8sResourceKind,
+  RowProps,
+  TableData,
+  Timestamp,
+} from '@openshift-console/dynamic-plugin-sdk';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Status from '@openshift-console/dynamic-plugin-sdk/lib/app/components/status/Status';

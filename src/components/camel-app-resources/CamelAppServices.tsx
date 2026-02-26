@@ -56,7 +56,9 @@ const CamelAppServices: React.FC<CamelAppServicesProps> = ({ obj: camelAppOwner 
 
   return (
     <Card>
-      <CardTitle>{t('Services')} ({services.length})</CardTitle>
+      <CardTitle>
+        {t('Services')} ({services.length})
+      </CardTitle>
       <CardBody>
         <DataList aria-label={t('Services list')} isCompact>
           {services.map((resource, i) => {
@@ -75,16 +77,13 @@ const CamelAppServices: React.FC<CamelAppServicesProps> = ({ obj: camelAppOwner 
                         </Content>
                         {resource.ports.length > 0 && (
                           <List isPlain className="camel-margin-top-sm">
-                            {resource.ports.map(({ name, port, protocol, targetPort}) => (
+                            {resource.ports.map(({ name, port, protocol, targetPort }) => (
                               <ListItem key={name || `${protocol}/${port}`}>
                                 {t('Service port:')}{' '}
                                 <strong>
                                   {name ? `${name} (${port})` : `${protocol}/${port}`}
-                                </strong>
-                                {' '}
-                                <LongArrowAltRightIcon />
-                                {' '}
-                                {t('Pod port:')}{' '}
+                                </strong>{' '}
+                                <LongArrowAltRightIcon /> {t('Pod port:')}{' '}
                                 <strong>{targetPort}</strong>
                               </ListItem>
                             ))}

@@ -1,6 +1,17 @@
 import * as React from 'react';
-import { Card, CardBody, CardHeader, CardTitle, GridItem, GridItemProps } from '@patternfly/react-core';
-import { QueryBrowser, usePrometheusPoll, PrometheusEndpoint } from '@openshift-console/dynamic-plugin-sdk';
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  GridItem,
+  GridItemProps,
+} from '@patternfly/react-core';
+import {
+  QueryBrowser,
+  usePrometheusPoll,
+  PrometheusEndpoint,
+} from '@openshift-console/dynamic-plugin-sdk';
 
 type ResourceMetricsDashboardCardProps = {
   namespace?: string;
@@ -45,7 +56,14 @@ const ResourceMetricsCard: React.FC<ResourceMetricsDashboardCardProps> = ({
           <CardTitle>{title}</CardTitle>
         </CardHeader>
         <CardBody className="resource-metrics-dashboard__card-body">
-          <QueryBrowser queries={queries} namespace={namespace} disableZoom hideControls isStack={isStack} units={units} />
+          <QueryBrowser
+            queries={queries}
+            namespace={namespace}
+            disableZoom
+            hideControls
+            isStack={isStack}
+            units={units}
+          />
         </CardBody>
       </Card>
     </GridItem>

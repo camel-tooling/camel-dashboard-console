@@ -4,7 +4,15 @@ import CamelAppPods from './CamelAppPods';
 import CamelAppServices from './CamelAppServices';
 import CamelAppRoutes from './CamelAppRoutes';
 import CamelAppOwnerResource from './CamelAppOwnerResource';
-import { Card, CardBody, Spinner, PageSection, Title, Grid, GridItem } from '@patternfly/react-core';
+import {
+  Card,
+  CardBody,
+  Spinner,
+  PageSection,
+  Title,
+  Grid,
+  GridItem,
+} from '@patternfly/react-core';
 import CamelAppJobs from './CamelAppJobs';
 import { CamelAppOwnerGVK } from '../../utils';
 import { useCamelAppOwner } from './useCamelAppResources';

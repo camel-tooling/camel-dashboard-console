@@ -52,7 +52,9 @@ const CamelAppJobs: React.FC<CamelAppJobsProps> = ({ obj: camelAppOwner }) => {
 
   return (
     <Card>
-      <CardTitle>{t('Jobs')} ({jobs.length})</CardTitle>
+      <CardTitle>
+        {t('Jobs')} ({jobs.length})
+      </CardTitle>
       <CardBody>
         <DataList aria-label={t('Jobs list')} isCompact>
           {jobs.map((resource, i) => {
