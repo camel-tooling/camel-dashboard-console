@@ -9,7 +9,12 @@ const CamelAppListEmpty: React.FC = () => {
   const { t } = useTranslation('plugin__camel-dashboard-console');
 
   return (
-    <EmptyState data-test="camelapp-list-empty" titleText="No Camel Application found" icon={CamelIcon} headingLevel="h2">
+    <EmptyState
+      data-test="camelapp-list-empty"
+      titleText="No Camel Application found"
+      icon={CamelIcon}
+      headingLevel="h2"
+    >
       <EmptyStateBody>
         <PageSection className="pf-v6-u-text-align-start">
           <Stack hasGutter>

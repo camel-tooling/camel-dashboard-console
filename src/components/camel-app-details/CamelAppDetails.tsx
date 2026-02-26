@@ -138,10 +138,7 @@ const CamelAppDetails: React.FC<CamelAppDetailsProps> = ({ obj: camelInt }) => {
             ? camelInt.status.pods.map((pod, i) => {
                 return (
                   <GridItem key={i}>
-                    <CamelAppStatusPod
-                      obj={camelInt}
-                      pod={pod}
-                    />
+                    <CamelAppStatusPod obj={camelInt} pod={pod} />
                   </GridItem>
                 );
               })

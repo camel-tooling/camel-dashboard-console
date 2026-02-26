@@ -54,7 +54,9 @@ const CamelAppRoutes: React.FC<CamelAppRoutesProps> = ({ obj: camelAppOwner }) =
 
   return (
     <Card>
-      <CardTitle>{t('Routes')} ({routes.length})</CardTitle>
+      <CardTitle>
+        {t('Routes')} ({routes.length})
+      </CardTitle>
       <CardBody>
         <DataList aria-label={t('Routes list')} isCompact>
           {routes.map((resource, i) => {

@@ -59,7 +59,10 @@ const CamelAppHealthCard: React.FC<CamelAppHealthCardProps> = ({ obj: camelInt }
     <Card isFullHeight>
       <CardHeader>
         <CardTitle>
-          <Flex alignItems={{ default: 'alignItemsCenter' }} spaceItems={{ default: 'spaceItemsSm' }}>
+          <Flex
+            alignItems={{ default: 'alignItemsCenter' }}
+            spaceItems={{ default: 'spaceItemsSm' }}
+          >
             <FlexItem>{t('Health')}</FlexItem>
             <FlexItem>
               <CamelAppHealth health={healthStatus} />
@@ -72,7 +75,10 @@ const CamelAppHealthCard: React.FC<CamelAppHealthCardProps> = ({ obj: camelInt }
           {camelInt.status?.sliExchangeSuccessRate ? (
             <>
               <FlexItem>
-                <Flex alignItems={{ default: 'alignItemsCenter' }} spaceItems={{ default: 'spaceItemsSm' }}>
+                <Flex
+                  alignItems={{ default: 'alignItemsCenter' }}
+                  spaceItems={{ default: 'spaceItemsSm' }}
+                >
                   <FlexItem>
                     <Title headingLevel="h4" size="md">
                       {t('Service Level Indicator')}
@@ -105,23 +111,15 @@ const CamelAppHealthCard: React.FC<CamelAppHealthCardProps> = ({ obj: camelInt }
                       <Title headingLevel="h2" size="2xl">
                         {camelInt.status.sliExchangeSuccessRate.samplingIntervalTotal ?? '?'}
                       </Title>
-                      <div className="camel-font-small">
-                        {t('Total exchanges')}
-                      </div>
+                      <div className="camel-font-small">{t('Total exchanges')}</div>
                     </div>
                   </FlexItem>
                   <FlexItem>
                     <div className="camel-text-center">
-                      <Title
-                        headingLevel="h2"
-                        size="2xl"
-                        className="camel-text-danger"
-                      >
+                      <Title headingLevel="h2" size="2xl" className="camel-text-danger">
                         {camelInt.status.sliExchangeSuccessRate.samplingIntervalFailed | 0}
                       </Title>
-                      <div className="camel-font-small">
-                        {t('Failed exchanges')}
-                      </div>
+                      <div className="camel-font-small">{t('Failed exchanges')}</div>
                     </div>
                   </FlexItem>
                 </Flex>

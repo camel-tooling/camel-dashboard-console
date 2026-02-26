@@ -61,7 +61,7 @@ export const runtimeProviderFilterItems: RowFilterItem[] = [
 export function camelVersionFilterReducer(app): string {
   const versions = getCamelVersions(app, 'asc');
   if (versions) {
-    return versions.map(v => `camel-version-${v}`).join();
+    return versions.map((v) => `camel-version-${v}`).join();
   }
   return '';
 }
@@ -99,7 +99,9 @@ export function camelVersionFilterItems(CamelApps: CamelAppKind[]): RowFilterIte
 }
 
 export function camelHealthFilterReducer(app): string {
-  const health = app.status?.sliExchangeSuccessRate ? app.status.sliExchangeSuccessRate.status : 'Unknown';
+  const health = app.status?.sliExchangeSuccessRate
+    ? app.status.sliExchangeSuccessRate.status
+    : 'Unknown';
   return `camel-health-${health}`;
 }
 
@@ -111,16 +113,23 @@ export function camelHealthFilter(input, app): boolean {
   return true;
 }
 
-export function camelHealthFilterItems(CamelApps: CamelAppKind[], t: (key: string) => string): RowFilterItem[] {
-  const camelHealthes = [...new Set(CamelApps.map((app) =>
-    app.status?.sliExchangeSuccessRate ? app.status.sliExchangeSuccessRate.status : 'Unknown'
-  ))].sort();
+export function camelHealthFilterItems(
+  CamelApps: CamelAppKind[],
+  t: (key: string) => string,
+): RowFilterItem[] {
+  const camelHealthes = [
+    ...new Set(
+      CamelApps.map((app) =>
+        app.status?.sliExchangeSuccessRate ? app.status.sliExchangeSuccessRate.status : 'Unknown',
+      ),
+    ),
+  ].sort();
 
   if (camelHealthes?.length) {
     return camelHealthes.map((camelHealth) => {
       return {
         id: `camel-health-${camelHealth}`,
-        title: getHealthDisplayName(camelHealth, t)
+        title: getHealthDisplayName(camelHealth, t),
       };
     });
   } else {

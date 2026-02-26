@@ -20,11 +20,12 @@ const CamelAppPodsSummary: React.FC<CamelAppPodsSummaryProps> = ({ obj: camelInt
   const { t } = useTranslation('plugin__camel-dashboard-console');
 
   // Calculate pod status counts
-  const podsByStatus = camelInt.status?.pods?.reduce((acc, pod) => {
-    const status = pod.status || 'Unknown';
-    acc[status] = (acc[status] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>) || {};
+  const podsByStatus =
+    camelInt.status?.pods?.reduce((acc, pod) => {
+      const status = pod.status || 'Unknown';
+      acc[status] = (acc[status] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>) || {};
 
   // Calculate aggregate exchange metrics
   const aggregateExchanges = camelInt.status?.pods?.reduce(

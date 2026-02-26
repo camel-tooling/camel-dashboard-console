@@ -28,9 +28,9 @@ export const useHawtioConsolePlugin = (): {
   const installed = pluginLoaded && HawtioConsolePluginResource != null;
 
   const activated =
-    !consoleLoaded || (consoleLoaded &&
-    ConsoleResource?.spec?.plugins?.includes(HAWTIO_CONSOLE_PLUGIN_NAME) === true);
-
+    !consoleLoaded ||
+    (consoleLoaded &&
+      ConsoleResource?.spec?.plugins?.includes(HAWTIO_CONSOLE_PLUGIN_NAME) === true);
 
   return { installed, activated };
 };

@@ -90,9 +90,7 @@ export const PopoverCamelHealth: React.FC<PopoverCamelHealthProps> = ({
                   <DescriptionListTerm>
                     <CamelAppHealth health="unknown" />
                   </DescriptionListTerm>
-                  <DescriptionListDescription>
-                    {t('No information')}
-                  </DescriptionListDescription>
+                  <DescriptionListDescription>{t('No information')}</DescriptionListDescription>
                 </DescriptionListGroup>
               </DescriptionList>
             </>

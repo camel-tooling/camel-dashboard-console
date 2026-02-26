@@ -153,8 +153,10 @@ const CamelAppStatusPod: React.FC<CamelAppStatusPodProps> = ({ obj: camelInt, po
                 <DescriptionListGroup>
                   <DescriptionListTerm>{t('Exchanges')}:</DescriptionListTerm>
                   <DescriptionListDescription>
-                    
-                    <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsSm' }}>
+                    <Flex
+                      direction={{ default: 'column' }}
+                      spaceItems={{ default: 'spaceItemsSm' }}
+                    >
                       {camelPod.runtime.exchange.lastTimestamp && (
                         <FlexItem>
                           <div className="camel-inline-timestamp">

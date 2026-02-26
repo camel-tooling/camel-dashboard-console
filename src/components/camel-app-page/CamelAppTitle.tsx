@@ -50,7 +50,9 @@ const CamelAppTitle: React.FC<CamelAppTitleProps> = ({ name, obj }) => {
               >
                 <img src={CamelImage} alt="Camel" className="camel-icon--lg" />
               </span>
-              <span className="co-resource-item__resource-name" data-test="camelapp-name">{name}</span>
+              <span className="co-resource-item__resource-name" data-test="camelapp-name">
+                {name}
+              </span>
             </span>
             <ResourceStatus>
               <Status status={obj?.status?.phase} />

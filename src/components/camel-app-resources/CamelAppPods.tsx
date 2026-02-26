@@ -44,7 +44,8 @@ const CamelAppPods: React.FC<CamelAppPodsProps> = ({ obj: camelInt }) => {
     camelInt.spec.selector,
   );
 
-  const { installed: installedHawtioConsolePlugin, activated: activatedHawtioConsolePlugin } = useHawtioConsolePlugin();
+  const { installed: installedHawtioConsolePlugin, activated: activatedHawtioConsolePlugin } =
+    useHawtioConsolePlugin();
 
   if (loadedPods && CamelAppPods.length > 0) {
     CamelAppPods.forEach((pod) => {
@@ -65,7 +66,9 @@ const CamelAppPods: React.FC<CamelAppPodsProps> = ({ obj: camelInt }) => {
 
   return (
     <Card>
-      <CardTitle>{t('Pods')} ({pods.length})</CardTitle>
+      <CardTitle>
+        {t('Pods')} ({pods.length})
+      </CardTitle>
       <CardBody>
         <DataList aria-label="Pods list" isCompact>
           {pods.map((resource, i) => {
@@ -100,43 +103,47 @@ const CamelAppPods: React.FC<CamelAppPodsProps> = ({ obj: camelInt }) => {
                           </Button>
                         </Content>
                       </DataListCell>,
-                      resource.hawtioEnabled && installedHawtioConsolePlugin && activatedHawtioConsolePlugin && (
-                        <DataListCell key="hawtio" width={3} alignRight>
-                          <Content>
-                            <Button
-                              variant="link"
-                              isInline
-                              component="a"
-                              href={`/k8s/ns/${camelInt.metadata.namespace}/pods/${resource.name}/hawtio`}
-                            >
-                              <Icon size="bodyDefault">
-                                <HawtioIcon />
-                              </Icon>{' '}
-                              {t('View Hawtio')}
-                            </Button>
-                          </Content>
-                        </DataListCell>
-                      ),
-                      resource.hawtioEnabled && installedHawtioConsolePlugin && !activatedHawtioConsolePlugin && (
-                        <DataListCell key="hawtio" width={3} alignRight>
-                          <Content>
-                            <Tooltip content={t('Hawtio plugin is installed but not enabled. Please enable it in the console settings.')}>
-                              <span>
-                                <Button
-                                  variant="link"
-                                  isInline
-                                  isDisabled
-                                >
-                                  <Icon size="bodyDefault">
-                                    <HawtioIcon />
-                                  </Icon>{' '}
-                                  {t('View Hawtio')}
-                                </Button>
-                              </span>
-                            </Tooltip>
-                          </Content>
-                        </DataListCell>
-                      ),
+                      resource.hawtioEnabled &&
+                        installedHawtioConsolePlugin &&
+                        activatedHawtioConsolePlugin && (
+                          <DataListCell key="hawtio" width={3} alignRight>
+                            <Content>
+                              <Button
+                                variant="link"
+                                isInline
+                                component="a"
+                                href={`/k8s/ns/${camelInt.metadata.namespace}/pods/${resource.name}/hawtio`}
+                              >
+                                <Icon size="bodyDefault">
+                                  <HawtioIcon />
+                                </Icon>{' '}
+                                {t('View Hawtio')}
+                              </Button>
+                            </Content>
+                          </DataListCell>
+                        ),
+                      resource.hawtioEnabled &&
+                        installedHawtioConsolePlugin &&
+                        !activatedHawtioConsolePlugin && (
+                          <DataListCell key="hawtio" width={3} alignRight>
+                            <Content>
+                              <Tooltip
+                                content={t(
+                                  'Hawtio plugin is installed but not enabled. Please enable it in the console settings.',
+                                )}
+                              >
+                                <span>
+                                  <Button variant="link" isInline isDisabled>
+                                    <Icon size="bodyDefault">
+                                      <HawtioIcon />
+                                    </Icon>{' '}
+                                    {t('View Hawtio')}
+                                  </Button>
+                                </span>
+                              </Tooltip>
+                            </Content>
+                          </DataListCell>
+                        ),
                     ].filter(Boolean)}
                   />
                 </DataListItemRow>
