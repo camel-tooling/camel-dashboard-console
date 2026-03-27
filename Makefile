@@ -19,8 +19,8 @@
 #
 SHELL := /bin/bash
 
-PLUGIN_VERSION := 0.4.1
-PLUGIN_CHART_VERSION := 0.4.1
+PLUGIN_VERSION := 0.4.2
+PLUGIN_CHART_VERSION := 0.4.2
 PLUGIN_NAME := camel-dashboard-console
 PLUGIN_NAMESPACE := camel-dashboard
 PLUGIN_IMAGE := quay.io/camel-tooling/camel-dashboard-console

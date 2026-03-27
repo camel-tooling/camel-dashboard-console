@@ -4,8 +4,8 @@ apiVersion: v2
 name: camel-dashboard-console
 description:  A Helm chart for installing the Camel Dashboard OpenShift Console plugin
 type: application
-version: 0.4.1
-appVersion: 0.4.1
+version: 0.4.2
+appVersion: 0.4.2
 # follows https://github.com/opdev/getocprange/blob/main/kubeOpenShiftVersionMap.yaml
 kubeVersion: ">= 1.34"
 icon: https://github.com/camel-tooling/camel-dashboard/raw/main/docs/static/images/logo.png
