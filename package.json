@@ -1,6 +1,6 @@
 {
   "name": "camel-dashboard-console",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Camel Dashboard Console",
   "private": true,
   "license": "Apache-2.0",
@@ -81,7 +81,7 @@
   },
   "consolePlugin": {
     "name": "camel-dashboard-console",
-    "version": "0.4.2",
+    "version": "0.5.0",
     "displayName": "Camel Dashboard Console",
     "description": "Camel Dashboard - OCP Console Plugin.",
     "exposedModules": {
