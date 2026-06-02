@@ -326,7 +326,51 @@
     },
     "camelAppRbac": {
       "type": ["array", "null"],
-      "description": "Configure view permissions to camelapps.camel.apache.org Custom Resources (GET LIST WATCH)",
+      "description": "Deprecated: will be removed in 0.6.0 - Configure view permissions to camelapps.camel.apache.org Custom Resources (GET LIST WATCH)",
+      "items": {
+        "type": "object",
+        "description": "RBAC configuration for a specific namespace",
+        "required": ["namespace", "subjects"],
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "The namespace where the Role and RoleBinding will be created"
+          },
+          "subjects": {
+            "type": "array",
+            "description": "List of subjects (Users, Groups, or ServiceAccounts) to bind to the role",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["kind"],
+              "properties": {
+                "apiGroup": {
+                  "type": "string",
+                  "description": "API group (typically rbac.authorization.k8s.io for User and Group)"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Subject kind",
+                  "enum": ["User", "Group", "ServiceAccount"]
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the subject"
+                },
+                "namespace": {
+                  "type": "string",
+                  "description": "Namespace of the ServiceAccount (required for ServiceAccount kind)"
+                }
+              }
+            }
+          }
+        }
+      },
+      "default": []
+    },
+    "camelMonitorRbac": {
+      "type": ["array", "null"],
+      "description": "Configure view permissions to camelmonitors.camel.apache.org Custom Resources (GET LIST WATCH)",
       "items": {
         "type": "object",
         "description": "RBAC configuration for a specific namespace",

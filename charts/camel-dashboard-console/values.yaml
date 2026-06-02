@@ -54,11 +54,31 @@ plugin:
           cpu: 10m
           memory: 50Mi
 
+# Deprecated: will be removed in 0.6.0
 # Configure one or more view permissions to camelapps.camel.apache.org Custom Resources (GET LIST WATCH).
 # The plugin needs the user to have access to the Custom Resources to be able to display them.
 # This will create a Role and a RoleBinding for each namespace.
 # The namespace and at least one subject a required to create a role/rolebinding pair.
 camelAppRbac:
+#  - namespace: my-project
+#    subjects:
+#      - apiGroup: rbac.authorization.k8s.io
+#        kind: User
+#        name: developer
+#  - namespace: my-other-project
+#    subjects:
+#      - apiGroup: rbac.authorization.k8s.io
+#        kind: Group
+#        name: system:authenticated
+#      - kind: ServiceAccount
+#        name: camel-developer
+#        namespace: openshift-monitoring
+
+# Configure one or more view permissions to camelmonitors.camel.apache.org Custom Resources (GET LIST WATCH).
+# The plugin needs the user to have access to the Custom Resources to be able to display them.
+# This will create a Role and a RoleBinding for each namespace.
+# The namespace and at least one subject a required to create a role/rolebinding pair.
+camelMonitorRbac:
 #  - namespace: my-project
 #    subjects:
 #      - apiGroup: rbac.authorization.k8s.io

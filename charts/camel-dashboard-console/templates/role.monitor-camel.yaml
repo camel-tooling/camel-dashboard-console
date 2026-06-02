@@ -1,10 +1,10 @@
-{{- if .Values.camelAppRbac }}
-{{- range .Values.camelAppRbac }}
+{{- if .Values.camelMonitorRbac }}
+{{- range .Values.camelMonitorRbac }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: "{{ template "camel-dashboard-console.name" $ }}-app-view"
+  name: "{{ template "camel-dashboard-console.name" $ }}-monitor-view"
   namespace: {{ required "A valid namespace is required!" .namespace }}
   labels:
     {{- include "camel-dashboard-console.labels" $ | nindent 4 }}
@@ -12,7 +12,7 @@ rules:
 - apiGroups:
   - "camel.apache.org"
   resources:
-  - camelapps
+  - camelmonitors
   verbs:
   - get
   - list

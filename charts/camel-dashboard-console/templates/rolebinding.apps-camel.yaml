@@ -4,14 +4,14 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: "{{ template "camel-dashboard-console.name" $ }}-view"
+  name: "{{ template "camel-dashboard-console.name" $ }}-app-view"
   namespace: {{ required "A valid namespace is required!" .namespace }}
   labels:
     {{- include "camel-dashboard-console.labels" $ | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{ template "camel-dashboard-console.name" $ }}-view
+  name: {{ template "camel-dashboard-console.name" $ }}-app-view
 {{- with required "At least one subject is required!" .subjects }}
 subjects:
   {{- toYaml . | nindent 2 }}
