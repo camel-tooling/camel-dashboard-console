@@ -1,0 +1,20 @@
+{{- if .Values.camelMonitorRbac }}
+{{- range .Values.camelMonitorRbac }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: "{{ template "camel-dashboard-console.name" $ }}-monitor-view"
+  namespace: {{ required "A valid namespace is required!" .namespace }}
+  labels:
+    {{- include "camel-dashboard-console.labels" $ | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ template "camel-dashboard-console.name" $ }}-monitor-view
+{{- with required "At least one subject is required!" .subjects }}
+subjects:
+  {{- toYaml . | nindent 2 }}
+{{- end }}
+{{- end }}
+{{- end }}

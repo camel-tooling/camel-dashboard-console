@@ -71,7 +71,7 @@ jobs:
             imagePullPolicy: IfNotPresent
             replicas: 1
             port: 9443
-          camelAppRbac:
+          camelMonitorRbac:
             - namespace: test-namespace
               subjects:
                 - apiGroup: rbac.authorization.k8s.io

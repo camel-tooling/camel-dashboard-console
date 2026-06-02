@@ -32,7 +32,7 @@ integration-tests/
 ### **Prerequisites**
 - OpenShift cluster with console access
 - `oc` CLI configured and logged in
-- Camel Dashboard Operator installed (creates CamelApp CRD)
+- Camel Dashboard Operator installed (creates CamelMonitor CRD)
 - Node.js 20+ and Yarn installed
 
 ### **Local Development (Recommended)**
@@ -115,18 +115,18 @@ ls integration-tests/artifacts/screenshots/
 - Check console is running: `http://localhost:9000`
 - Check plugin is running: `http://localhost:9001`
 
-### **"CamelApp CRD not found"**
+### **"CamelMonitor CRD not found"**
 - Install Camel Dashboard Operator
 - Or manually install CRD:
   ```bash
-  oc apply -f <camelapp-crd.yaml>
+  oc apply -f <camelmonitor-crd.yaml>
   ```
 
 ### **Details Page Tests Skipped**
-- This is expected if no CamelApps exist
-- Create a test CamelApp:
+- This is expected if no CamelMonitors exist
+- Create a test CamelMonitor:
   ```bash
-  oc apply -f <test-camelapp.yaml>
+  oc apply -f <test-camelmonitor.yaml>
   ```
 
 ### **Welcome Popup Won't Close**

@@ -81,13 +81,13 @@ It is also available in the developer perspective.
 
 ## User Configuration
 
-To be able to see your Camel integrations in the Camel Dashboard you need for your user to have access to the Custom Resources created by the camel-dashboard-operator with the following permissions:
+To be able to see your Camel integrations in the Camel Dashboard you need for your user to have access to the Custom Resources created by the camel-monitor-operator with the following permissions:
 
 ```yaml
 - apiGroups:
   - "camel.apache.org"
   resources:
-  - camelapps
+  - camelmonitors
   verbs:
   - get
   - list
@@ -96,7 +96,7 @@ To be able to see your Camel integrations in the Camel Dashboard you need for yo
 
 You can use the helm script installation with the your values to easily create `Role`/`RoleBinding` pairs: 
 ```yaml
-camelAppRbac:
+camelMonitorRbac:
   - namespace: my-project
     subjects:
       - apiGroup: rbac.authorization.k8s.io
@@ -104,3 +104,4 @@ camelAppRbac:
         name: developer
 ```
 
+This configuration is also still available for CamelApp CRs of the camel-dashboard-operator until version 0.6.0 of camel-dashboard-console. In this case you need to use `camelAppRbac` instead of `camelMonitorRbac`.
