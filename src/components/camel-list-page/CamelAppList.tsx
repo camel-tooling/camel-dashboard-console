@@ -23,6 +23,7 @@ import { CamelAppKind } from '../../types';
 import CamelAppHealth from './CamelAppHealth';
 import CamelAppListEmpty from './CamelAppListEmpty';
 import CamelAppNotAvailable from './CamelAppNotAvailable';
+import CamelAppSummary from './CamelAppSummary';
 import CamelNewProjectAlert from './CamelNewProjectAlert';
 import CamelImage from '@images/camel.svg';
 import {
@@ -308,7 +309,9 @@ const CamelAppList: React.FC = () => {
       <DocumentTitle>{t('Camel Applications')}</DocumentTitle>
       <NamespaceBar onNamespaceChange={setActiveNamespace} />
       <div className="co-m-list">
-        <ListPageHeader title={t('Camel Applications')} />
+        <ListPageHeader title={t('Camel Applications')} badge={loaded && CamelApps.length > 0 && (
+            <CamelAppSummary data={CamelApps} />
+        )}/>
         <ListPageBody>
           <div className="pf-v6-l-grid">
             <div className="pf-v6-l-grid__item">
