@@ -24,7 +24,6 @@ import CamelAppHealth from './CamelAppHealth';
 import CamelAppListEmpty from './CamelAppListEmpty';
 import CamelAppNotAvailable from './CamelAppNotAvailable';
 import CamelAppSummary from './CamelAppSummary';
-import CamelNewProjectAlert from './CamelNewProjectAlert';
 import CamelImage from '@images/camel.svg';
 import {
   CamelDataView,
@@ -37,6 +36,7 @@ import { useCamelAppList } from './useCamelAppList';
 import { sortResourceByCamelVersion, getCamelVersionAsString } from './camelAppVersion';
 import { sortResourceByLastMessage, getLastMessageTimestamp } from './lastMessage';
 import { getCamelVersions } from './camelAppVersion';
+import GettingStartedContent from './GettingStartedContent';
 
 type CamelFilters = {
   name: string;
@@ -226,60 +226,60 @@ const CamelAppList: React.FC = () => {
         const lastMessageDate = getLastMessageTimestamp(obj, 'asc');
 
         const rowCells: Record<string, { cell: React.ReactNode; props?: Record<string, unknown> }> =
-          {
-            name: {
-              cell: (
-                <span className="co-resource-item co-resource-item--truncate">
-                  <span className="co-m-resource-icon co-m-resource-camel">
-                    <img src={CamelImage} alt="Camel" className="camel-icon" />
-                  </span>
-                  <Link
-                    to={`/camel/app/ns/${obj.metadata.namespace}/name/${obj.metadata.name}`}
-                    className="co-resource-item__resource-name"
-                    title={obj.metadata.name}
-                    data-test="camelapp-link"
-                  >
-                    {obj.metadata.name}
-                  </Link>
+        {
+          name: {
+            cell: (
+              <span className="co-resource-item co-resource-item--truncate">
+                <span className="co-m-resource-icon co-m-resource-camel">
+                  <img src={CamelImage} alt="Camel" className="camel-icon" />
                 </span>
-              ),
-              props: nameCellProps,
-            },
-            namespace: {
-              cell: (
-                <span className="co-break-word co-line-clamp">
-                  {obj.metadata?.namespace || (
-                    <Label color="grey" icon={<MinusIcon />} isCompact>
-                      {t('No namespace')}
-                    </Label>
-                  )}
-                </span>
-              ),
-            },
-            status: {
-              cell: <Status status={getStatus(obj)} />,
-            },
-            health: {
-              cell: <CamelAppHealth health={getCamelHealth(obj)} />,
-            },
-            runtime: {
-              cell: getRuntimeProvider(obj) || (
-                <Label color="grey" icon={<MinusIcon />} isCompact>
-                  {t('No runtime provider')}
-                </Label>
-              ),
-            },
-            camel: {
-              cell: getCamelVersionAsString(obj, 'asc') || (
-                <Label color="grey" icon={<MinusIcon />} isCompact>
-                  {t('No camel version')}
-                </Label>
-              ),
-            },
-            lastmessage: {
-              cell: lastMessageDate ? <Timestamp timestamp={lastMessageDate} /> : '-',
-            },
-          };
+                <Link
+                  to={`/camel/app/ns/${obj.metadata.namespace}/name/${obj.metadata.name}`}
+                  className="co-resource-item__resource-name"
+                  title={obj.metadata.name}
+                  data-test="camelapp-link"
+                >
+                  {obj.metadata.name}
+                </Link>
+              </span>
+            ),
+            props: nameCellProps,
+          },
+          namespace: {
+            cell: (
+              <span className="co-break-word co-line-clamp">
+                {obj.metadata?.namespace || (
+                  <Label color="grey" icon={<MinusIcon />} isCompact>
+                    {t('No namespace')}
+                  </Label>
+                )}
+              </span>
+            ),
+          },
+          status: {
+            cell: <Status status={getStatus(obj)} />,
+          },
+          health: {
+            cell: <CamelAppHealth health={getCamelHealth(obj)} />,
+          },
+          runtime: {
+            cell: getRuntimeProvider(obj) || (
+              <Label color="grey" icon={<MinusIcon />} isCompact>
+                {t('No runtime provider')}
+              </Label>
+            ),
+          },
+          camel: {
+            cell: getCamelVersionAsString(obj, 'asc') || (
+              <Label color="grey" icon={<MinusIcon />} isCompact>
+                {t('No camel version')}
+              </Label>
+            ),
+          },
+          lastmessage: {
+            cell: lastMessageDate ? <Timestamp timestamp={lastMessageDate} /> : '-',
+          },
+        };
 
         return tableColumns.map(({ id }) => ({
           id,
@@ -310,16 +310,13 @@ const CamelAppList: React.FC = () => {
       <NamespaceBar onNamespaceChange={setActiveNamespace} />
       <div className="co-m-list">
         <ListPageHeader title={t('Camel Applications')} badge={loaded && CamelApps.length > 0 && (
-            <CamelAppSummary data={CamelApps} />
-        )}/>
+          <CamelAppSummary data={CamelApps} />
+        )} helpText={loaded && CamelApps.length > 0 && (<GettingStartedContent/>)}>
+        </ListPageHeader>
+        
         <ListPageBody>
           <div className="pf-v6-l-grid">
             <div className="pf-v6-l-grid__item">
-              {loaded && CamelApps.length > 0 && (
-                <div className="pf-v6-u-mb-sm">
-                  <CamelNewProjectAlert />
-                </div>
-              )}
               {loaded && CamelApps.length === 0 ? (
                 <CamelAppListEmpty />
               ) : (

@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import '../../camel.css';
 import { Alert, EmptyState, EmptyStateBody, PageSection, Stack } from '@patternfly/react-core';
 import { CamelIcon, CamelIconAlert } from './CamelIcon';
-import CamelNewProjectAlert from './CamelNewProjectAlert';
+import GettingStartedContent from './GettingStartedContent';
 
 const CamelAppListEmpty: React.FC = () => {
   const { t } = useTranslation('plugin__camel-dashboard-console');
@@ -16,6 +16,8 @@ const CamelAppListEmpty: React.FC = () => {
       headingLevel="h2"
     >
       <EmptyStateBody>
+        <GettingStartedContent />
+        <br/>
         <PageSection className="pf-v6-u-text-align-start">
           <Stack hasGutter>
             <Alert
@@ -28,7 +30,7 @@ const CamelAppListEmpty: React.FC = () => {
                 <p>
                   To get your Apache Camel project to show up in the Camel Dashboard, you must
                   enable{' '}
-                  <a href="https://camel.apache.org/components/next/others/observability-services.html">
+                  <a href="https://camel.apache.org/components/others/observability-services.html">
                     management and metrics collection
                   </a>{' '}
                   and{' '}
@@ -43,7 +45,6 @@ const CamelAppListEmpty: React.FC = () => {
                 </p>
               </Trans>
             </Alert>
-            <CamelNewProjectAlert />
           </Stack>
         </PageSection>
       </EmptyStateBody>
