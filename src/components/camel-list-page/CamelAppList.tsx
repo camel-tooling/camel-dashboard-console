@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   DocumentTitle,
@@ -28,6 +28,7 @@ import CamelImage from '@images/camel.svg';
 import {
   CamelDataView,
   CamelDataViewColumn,
+  CamelDataViewFilterRef,
   CamelDataViewTd,
   nameCellProps,
   nameColumnProps,
@@ -123,6 +124,12 @@ const CamelAppList: React.FC = () => {
   );
 
   const { CamelApps, loaded, error } = useCamelAppList(namespace);
+
+  const filterRef = useRef<CamelDataViewFilterRef<CamelFilters> | null>(null);
+
+  const handleHealthFilter = useCallback((healthValue: string) => {
+    filterRef.current?.onSetFilters({ health: [healthValue] });
+  }, []);
 
   const oldCRDFlagEnabled = useFlag('CAMEL_APP_FLAG');
   const newCRDFlagEnabled = useFlag('CAMEL_MONITOR_FLAG');
@@ -310,7 +317,7 @@ const CamelAppList: React.FC = () => {
       <NamespaceBar onNamespaceChange={setActiveNamespace} />
       <div className="co-m-list">
         <ListPageHeader title={t('Camel Applications')} badge={loaded && CamelApps.length > 0 && (
-          <CamelAppSummary data={CamelApps} />
+          <CamelAppSummary data={CamelApps} onHealthFilter={handleHealthFilter} />
         )} helpText={loaded && CamelApps.length > 0 && (<GettingStartedContent/>)}>
         </ListPageHeader>
         
@@ -328,6 +335,7 @@ const CamelAppList: React.FC = () => {
                   columns={columns}
                   getDataViewRows={getDataViewRows}
                   initialFilters={initialFilters}
+                  filterRef={filterRef}
                   additionalFilterNodes={additionalFilterNodes}
                   matchesAdditionalFilters={matchesAdditionalFilters}
                 />

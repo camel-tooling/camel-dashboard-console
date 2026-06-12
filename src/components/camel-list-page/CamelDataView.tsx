@@ -39,6 +39,10 @@ type BaseFilters = {
   name: string;
 };
 
+export type CamelDataViewFilterRef<TFilters> = {
+  onSetFilters: (filters: Partial<TFilters>) => void;
+};
+
 type CamelDataViewProps<TData, TFilters extends BaseFilters> = {
   label?: string;
   data: TData[];
@@ -47,6 +51,7 @@ type CamelDataViewProps<TData, TFilters extends BaseFilters> = {
   columns: CamelDataViewColumn<TData>[];
   getDataViewRows: (data: TData[], columns: CamelDataViewColumn<TData>[]) => CamelDataViewTd[][];
   initialFilters: TFilters;
+  filterRef?: React.MutableRefObject<CamelDataViewFilterRef<TFilters> | null>;
   additionalFilterNodes?: React.ReactNode[];
   matchesAdditionalFilters?: (obj: TData, filters: TFilters) => boolean;
   getObjectName?: (obj: TData) => string;
@@ -88,6 +93,7 @@ export const CamelDataView = <TData, TFilters extends BaseFilters>({
   columns,
   getDataViewRows,
   initialFilters,
+  filterRef,
   additionalFilterNodes,
   matchesAdditionalFilters,
   getObjectName = defaultGetName,
@@ -100,6 +106,12 @@ export const CamelDataView = <TData, TFilters extends BaseFilters>({
     searchParams,
     setSearchParams,
   });
+
+  useEffect(() => {
+    if (filterRef) {
+      filterRef.current = { onSetFilters };
+    }
+  }, [filterRef, onSetFilters]);
 
   const filteredData = useMemo(
     () =>
