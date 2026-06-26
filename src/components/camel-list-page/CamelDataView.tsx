@@ -2,11 +2,7 @@ import * as React from 'react';
 import { useMemo, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SkeletonTableBody } from '@patternfly/react-component-groups';
-import {
-  Bullseye,
-  Pagination,
-  PaginationVariant,
-} from '@patternfly/react-core';
+import { Bullseye, Pagination, PaginationVariant } from '@patternfly/react-core';
 import {
   DataView,
   DataViewFilters,
@@ -84,7 +80,6 @@ const sortByValue =
 const defaultGetName = (obj: unknown): string =>
   (obj as { metadata?: { name?: string } })?.metadata?.name ?? '';
 
-
 export const CamelDataView = <TData, TFilters extends BaseFilters>({
   label,
   data,
@@ -118,8 +113,7 @@ export const CamelDataView = <TData, TFilters extends BaseFilters>({
       data?.filter((resource) => {
         const resourceName = getObjectName(resource);
         const matchesName =
-          !filters.name ||
-          resourceName.toLowerCase().includes(filters.name.toLowerCase());
+          !filters.name || resourceName.toLowerCase().includes(filters.name.toLowerCase());
 
         return matchesName && (matchesAdditionalFilters?.(resource, filters) ?? true);
       }) ?? [],
@@ -238,11 +232,7 @@ export const CamelDataView = <TData, TFilters extends BaseFilters>({
       <Tbody>
         <Tr>
           <Td colSpan={columns.length}>
-            <Bullseye>
-              {label
-                ? t('No {{label}} found', { label })
-                : t('None found')}
-            </Bullseye>
+            <Bullseye>{label ? t('No {{label}} found', { label }) : t('None found')}</Bullseye>
           </Td>
         </Tr>
       </Tbody>
@@ -262,11 +252,7 @@ export const CamelDataView = <TData, TFilters extends BaseFilters>({
 
   const filterNodes = useMemo<React.ReactNode[]>(() => {
     const basicFilters: React.ReactNode[] = [
-      <DataViewTextFilter
-        key="name"
-        filterId="name"
-        title={t('Name')}
-      />,
+      <DataViewTextFilter key="name" filterId="name" title={t('Name')} />,
     ];
 
     return additionalFilterNodes?.length > 0

@@ -9,10 +9,7 @@ export const useSearchParams = (): [URLSearchParams, SetSearchParams] => {
   const location = useLocation();
   const history = useHistory();
 
-  const searchParams = useMemo(
-    () => new URLSearchParams(location.search),
-    [location.search],
-  );
+  const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   const setSearchParams = useCallback<SetSearchParams>(
     (updater) => {

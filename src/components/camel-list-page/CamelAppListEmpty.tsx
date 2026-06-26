@@ -17,7 +17,7 @@ const CamelAppListEmpty: React.FC = () => {
     >
       <EmptyStateBody>
         <GettingStartedContent />
-        <br/>
+        <br />
         <PageSection className="pf-v6-u-text-align-start">
           <Stack hasGutter>
             <Alert
