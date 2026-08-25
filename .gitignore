@@ -1,3 +1,4 @@
+.idea/
 build/
 dist/
 lib/
@@ -36,11 +37,10 @@ __webpackConfig__.txt
 **/.DS_Store
 .devcontainer/dev.env
 
-# Cypress test artifacts
-integration-tests/artifacts/
-integration-tests/screenshots/
-integration-tests/videos/
-
 tls-certificates/*.crt
 tls-certificates/*.key
 tls-certificates/*.srl
+
+# Playwright
+/tests/reports/
+/tests/.auth/
