@@ -1,6 +1,6 @@
 import { K8sResourceKind } from '@openshift-console/dynamic-plugin-sdk';
 import { formatDuration } from '../../date-utils';
-import { TFunction } from 'react-i18next';
+import { TFunction } from 'i18next';
 
 export const sortResourceByLastMessage =
   (direction: string) => (a: K8sResourceKind, b: K8sResourceKind) => {

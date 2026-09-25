@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-CONSOLE_IMAGE=${CONSOLE_IMAGE:="quay.io/openshift/origin-console:4.21"}
+CONSOLE_IMAGE=${CONSOLE_IMAGE:="quay.io/openshift/origin-console:4.22"}
 CONSOLE_PORT=${CONSOLE_PORT:=9000}
 CONSOLE_IMAGE_PLATFORM=${CONSOLE_IMAGE_PLATFORM:="linux/amd64"}
 
@@ -23,6 +23,7 @@ BRIDGE_K8S_MODE_OFF_CLUSTER_ALERTMANAGER=$(oc -n openshift-config-managed get co
 set -e
 BRIDGE_K8S_AUTH_BEARER_TOKEN=$(oc whoami --show-token 2>/dev/null)
 BRIDGE_USER_SETTINGS_LOCATION="localstorage"
+BRIDGE_BRANDING="${BRIDGE_BRANDING:=ocp}"
 BRIDGE_I18N_NAMESPACES="plugin__${PLUGIN_NAME}"
 
 # Don't fail if the cluster doesn't have gitops.

@@ -43,7 +43,7 @@ const healthyCondition = (camelInt: CamelAppKind) => {
   const healthConditions = camelInt.status?.conditions?.filter(
     (contidition) => contidition.type == 'Healthy',
   );
-  if (healthConditions.length > 0) {
+  if (healthConditions?.length > 0) {
     return healthConditions[0];
   }
   return;
@@ -53,7 +53,7 @@ const memoryPressureCondition = (camelInt: CamelAppKind) => {
   const conditions = camelInt.status?.conditions?.filter(
     (condition) => condition.type == 'MemoryPressure',
   );
-  if (conditions.length > 0) {
+  if (conditions?.length > 0) {
     return conditions[0];
   }
   return;
@@ -63,7 +63,7 @@ const cpuPressureCondition = (camelInt: CamelAppKind) => {
   const conditions = camelInt.status?.conditions?.filter(
     (condition) => condition.type == 'CPUPressure',
   );
-  if (conditions.length > 0) {
+  if (conditions?.length > 0) {
     return conditions[0];
   }
   return;

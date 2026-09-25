@@ -5,7 +5,7 @@ import { Timestamp } from '@openshift-console/dynamic-plugin-sdk';
 import Status from '@openshift-console/dynamic-plugin-sdk/lib/app/components/status/Status';
 import { Label } from '@patternfly/react-core';
 import { MinusIcon } from '@patternfly/react-icons';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { CamelAppKind } from '../../types';
 import { CamelDataViewColumn, CamelDataViewTd, nameCellProps } from './CamelDataView';
 import CamelAppHealth from './CamelAppHealth';

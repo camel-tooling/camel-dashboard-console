@@ -17,7 +17,7 @@ The project is created using [openshift console plugin template](https://github.
 **Current version: 1.0.0**
 
 It requires:
-* OpenShift 4.21
+* OpenShift 4.22
 * [Camel Dashboard Operator](https://github.com/camel-tooling/camel-dashboard-operator)
 
 

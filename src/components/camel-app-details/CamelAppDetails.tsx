@@ -52,7 +52,7 @@ const monitoredCondition = (camelInt: CamelAppKind) => {
   const monitoredConditions = camelInt.status?.conditions?.filter(
     (contidition) => contidition.type == 'Monitored',
   );
-  if (monitoredConditions.length > 0) {
+  if (monitoredConditions?.length > 0) {
     return monitoredConditions[0];
   }
   return;

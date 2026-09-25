@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Spinner } from '@patternfly/react-core';
-import { useParams } from 'react-router-dom-v5-compat';
+import { useParams } from 'react-router';
 import { HorizontalNav, NamespaceBar } from '@openshift-console/dynamic-plugin-sdk';
 import { useCamelApp } from './useCamelApp';
 import { useCamelAppTabs } from './useCamelAppTabs';

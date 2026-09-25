@@ -1,5 +1,5 @@
 import { useMemo, useCallback } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 
 type SetSearchParams = (
   updater: URLSearchParams | ((prev: URLSearchParams) => URLSearchParams),
@@ -7,7 +7,7 @@ type SetSearchParams = (
 
 export const useSearchParams = (): [URLSearchParams, SetSearchParams] => {
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
 
@@ -15,12 +15,9 @@ export const useSearchParams = (): [URLSearchParams, SetSearchParams] => {
     (updater) => {
       const currentParams = new URLSearchParams(location.search);
       const newParams = typeof updater === 'function' ? updater(currentParams) : updater;
-      history.replace({
-        ...location,
-        search: newParams.toString(),
-      });
+      navigate({ ...location, search: newParams.toString() }, { replace: true });
     },
-    [history, location],
+    [navigate, location],
   );
 
   return [searchParams, setSearchParams];

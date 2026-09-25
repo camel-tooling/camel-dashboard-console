@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom-v5-compat';
+import { Link } from 'react-router';
 import { Breadcrumb, BreadcrumbItem } from '@patternfly/react-core';
 import { useTranslation } from 'react-i18next';
 import { ALL_NAMESPACES_KEY } from '../../const';
