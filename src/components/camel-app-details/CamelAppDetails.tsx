@@ -114,7 +114,7 @@ const CamelAppDetails: React.FC<CamelAppDetailsProps> = ({ obj: camelInt }) => {
                   {upgradeAvailable &&
                     upgradeAvailable.status === K8sResourceConditionStatus.True && (
                       <DescriptionListGroup>
-                        <DescriptionListTerm>{t('Runtime Update')}:</DescriptionListTerm>
+                        <DescriptionListTerm>{t('Upgrade')}:</DescriptionListTerm>
                         <DescriptionListDescription>
                           <Label color="blue" icon={<ArrowCircleUpIcon />} isCompact>
                             {upgradeAvailable.message}
