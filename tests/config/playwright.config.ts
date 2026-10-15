@@ -56,6 +56,8 @@ function resolveBaseUrl(): string {
 
 export default defineConfig({
   testDir: '..',
+  globalSetup: path.resolve(__dirname, '../setup/global.setup.ts'),
+  globalTeardown: path.resolve(__dirname, '../setup/global.teardown.ts'),
   timeout: 60000,
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
