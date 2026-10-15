@@ -1,4 +1,4 @@
-import { test, expect } from './fixtures';
+import { test, expect } from '../fixtures/fixtures';
 
 test.describe('Camel Dashboard Console plugin', () => {
   test('plugin is loaded and navigable via sidebar', async ({ page, consolePage }) => {

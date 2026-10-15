@@ -23,7 +23,7 @@ export class CamelDetailsPage {
   }
 
   tab(name: string) {
-    return this.page.locator(`[data-test-id="horizontal-link-${name}"]`);
+    return this.page.getByRole('tab', { name });
   }
 
   async goto(namespace: string, name: string, tabPath = '') {

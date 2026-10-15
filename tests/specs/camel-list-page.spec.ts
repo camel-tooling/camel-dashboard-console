@@ -1,4 +1,4 @@
-import { test, expect } from './fixtures';
+import { test, expect } from '../fixtures/fixtures';
 
 test.describe('Camel Dashboard Console - List Page', () => {
   test.beforeEach(async ({ listPage }) => {

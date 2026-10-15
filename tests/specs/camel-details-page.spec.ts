@@ -1,4 +1,4 @@
-import { test, expect } from './fixtures';
+import { test, expect } from '../fixtures/fixtures';
 
 test.describe('Camel Dashboard Console - Details Page', () => {
   test('displays details page with correct title', async ({ app, detailsPage }) => {
