@@ -152,6 +152,17 @@
             }
           }
         },
+        "networkPolicy": {
+          "type": "object",
+          "description": "Network policy configuration for the plugin Pod",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable network policy to restrict pod traffic",
+              "default": true
+            }
+          }
+        },
         "basePath": {
           "type": "string",
           "description": "Base path for the plugin",

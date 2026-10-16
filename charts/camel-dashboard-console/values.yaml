@@ -24,6 +24,8 @@ plugin:
     requests:
       cpu: 10m
       memory: 50Mi
+  networkPolicy:
+    enabled: true
   basePath: /
   certificateSecretName: ""
   serviceAccount:

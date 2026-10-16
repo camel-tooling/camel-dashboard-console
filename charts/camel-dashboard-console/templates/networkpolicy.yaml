@@ -1,0 +1,21 @@
+{{- if .Values.plugin.networkPolicy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ template "camel-dashboard-console.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "camel-dashboard-console.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: {{ template "camel-dashboard-console.name" . }}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - ports:
+        - port: {{ .Values.plugin.port }}
+          protocol: TCP
+  egress: []
+{{- end }}
