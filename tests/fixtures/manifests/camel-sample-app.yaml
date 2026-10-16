@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${APP_NAME}
+  namespace: ${APP_NAMESPACE}
+  labels:
+    app.kubernetes.io/name: ${APP_NAME}
+    # The operator watches this label and creates a CamelMonitor for the deployment,
+    # which is what the plugin lists.
+    camel.apache.org/monitor: ${APP_NAME}
+    camel-e2e-managed: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ${APP_NAME}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: ${APP_NAME}
+    spec:
+      containers:
+        - name: app
+          image: ${APP_IMAGE}
+          ports:
+            - containerPort: 8080

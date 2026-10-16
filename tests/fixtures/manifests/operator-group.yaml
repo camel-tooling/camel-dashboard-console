@@ -1,0 +1,13 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: camel-test-operatorgroup
+  namespace: ${OPERATOR_NAMESPACE}
+  labels:
+    camel-e2e-managed: 'true'
+spec:
+  # OwnNamespace mode: the operator watches the single namespace it's installed in.
+  # Only needed for custom-namespace (upstream) installs — openshift-operators
+  # already has a cluster-wide OperatorGroup.
+  targetNamespaces:
+    - ${OPERATOR_NAMESPACE}

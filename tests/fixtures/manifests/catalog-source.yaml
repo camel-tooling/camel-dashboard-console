@@ -1,0 +1,12 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: ${CATALOG_NAME}
+  namespace: ${CATALOG_NAMESPACE}
+  labels:
+    camel-e2e-managed: 'true'
+spec:
+  sourceType: grpc
+  image: ${INDEX_IMAGE}
+  displayName: 'Camel Monitor Custom Catalog'
+  publisher: ''

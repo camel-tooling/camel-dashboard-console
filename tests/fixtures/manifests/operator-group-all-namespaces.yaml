@@ -1,0 +1,10 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: camel-test-operatorgroup
+  namespace: ${OPERATOR_NAMESPACE}
+  labels:
+    camel-e2e-managed: 'true'
+# No spec.targetNamespaces = AllNamespaces mode: the operator installed in this custom
+# namespace watches the whole cluster (so sample apps can live in any namespace).
+spec: {}
