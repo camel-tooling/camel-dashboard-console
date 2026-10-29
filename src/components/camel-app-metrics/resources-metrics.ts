@@ -32,10 +32,10 @@ const podControllerMetricsQueries = {
     "sum(irate(container_network_transmit_bytes_total[5m]) * on (pod) group_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{workload='<%= name %>', workload_type='<%= type %>'}) by (pod)",
   ),
   [ResourceUtilizationQuery.EXCHANGES]: _.template(
-    "sum(rate(camel_exchanges_total{pod=~'<%= name %>-.*'}[5m])) by (pod) * 60",
+    "sum(rate(camel_exchanges_total{pod=~'<%= name %>-[0-9a-z]+-[0-9a-z]+'}[5m])) by (pod) * 60",
   ),
   [ResourceUtilizationQuery.FAILED_EXCHANGES]: _.template(
-    "(sum(rate(camel_exchanges_failed_total{pod=~'<%= name %>-.*'}[5m])) by (pod) / sum(rate(camel_exchanges_total{pod=~'<%= name %>-.*'}[5m])) by (pod)) * 100",
+    "(sum(rate(camel_exchanges_failed_total{pod=~'<%= name %>-[0-9a-z]+-[0-9a-z]+'}[5m])) by (pod) / sum(rate(camel_exchanges_total{pod=~'<%= name %>-[0-9a-z]+-[0-9a-z]+'}[5m])) by (pod)) * 100",
   ),
 };
 
