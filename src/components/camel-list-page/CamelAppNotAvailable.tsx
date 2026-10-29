@@ -1,6 +1,6 @@
 import { Alert, PageSection } from '@patternfly/react-core';
 import * as React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const CamelAppNotAvailable: React.FC = () => {
   const { t } = useTranslation('plugin__camel-dashboard-console');
@@ -8,24 +8,13 @@ const CamelAppNotAvailable: React.FC = () => {
   return (
     <PageSection className="pf-v6-u-text-align-start">
       <Alert title={t('Camel Monitor Operator is missing')} variant="warning" isInline>
-        <Trans t={t}>
-          <p>
-            The{' '}
-            <a href="https://camel-tooling.github.io/camel-dashboard/docs/installation-guide/advanced/operator/">
-              Camel Monitor Operator
-            </a>{' '}
-            is required because it is responsible for detecting the applications deployed on the
-            cluster.
-          </p>
-          <br />
-          <p>
-            Please ensure you{' '}
-            <a href="https://camel-tooling.github.io/camel-dashboard/docs/installation-guide/">
-              installed
-            </a>{' '}
-            the Camel Dashboard correctly.
-          </p>
-        </Trans>
+        <p>
+          {t(
+            'The Camel Monitor Operator is required because it is responsible for detecting the applications deployed on the cluster.',
+          )}
+        </p>
+        <br />
+        <p>{t('Please ensure the Camel Dashboard is installed correctly.')}</p>
       </Alert>
     </PageSection>
   );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import '../../camel.css';
 import { Alert, EmptyState, EmptyStateBody, PageSection, Stack } from '@patternfly/react-core';
 import { CamelIcon, CamelIconAlert } from './CamelIcon';
@@ -26,24 +26,11 @@ const CamelAppListEmpty: React.FC = () => {
               variant="info"
               isInline
             >
-              <Trans t={t}>
-                <p>
-                  To get your Apache Camel project to show up in the Camel Dashboard, you must
-                  enable{' '}
-                  <a href="https://camel.apache.org/components/others/observability-services.html">
-                    management and metrics collection
-                  </a>{' '}
-                  and{' '}
-                  <a href="https://camel-tooling.github.io/camel-dashboard/docs/user-guide/">
-                    configure
-                  </a>{' '}
-                  your deployment so it can be discovered by the{' '}
-                  <a href="https://camel-tooling.github.io/camel-dashboard/docs/installation-guide/advanced/operator/">
-                    Camel Monitor Operator
-                  </a>
-                  .
-                </p>
-              </Trans>
+              <p>
+                {t(
+                  'To get your Apache Camel project to show up in the Camel Dashboard, you must enable management and metrics collection, and configure your deployment so it can be discovered by the Camel Monitor Operator.',
+                )}
+              </p>
             </Alert>
           </Stack>
         </PageSection>
