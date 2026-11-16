@@ -5,37 +5,23 @@ export const sortResourceByCamelVersion =
     const { first, second } =
       direction === 'asc' ? { first: a, second: b } : { first: b, second: a };
 
-    const firstValue = getCamelVersions(first, direction);
-    const secondValue = getCamelVersions(second, direction);
+    const firstValue = getCamelVersions(first, direction)[0] ?? '';
+    const secondValue = getCamelVersions(second, direction)[0] ?? '';
 
-    return firstValue[0]?.localeCompare(secondValue[0]);
+    return firstValue.localeCompare(secondValue);
   };
 
 export const getCamelVersions = (camelInt: K8sResourceKind, direction: string): string[] => {
-  if (direction == 'asc') {
-    return camelInt.status?.pods
-      ?.map((pod) => pod.runtime?.camelVersion)
-      .reduce((acc, item) => {
-        if (!acc.includes(item)) acc.push(item);
-        return acc;
-      }, [])
-      .sort();
-  } else {
-    return camelInt.status?.pods
-      ?.map((pod) => pod.runtime?.camelVersion)
-      .reduce((acc, item) => {
-        if (!acc.includes(item)) acc.push(item);
-        return acc;
-      }, [])
-      .sort()
-      .reverse();
-  }
+  const versions = [
+    ...new Set<string>(
+      camelInt.status?.pods
+        ?.map((pod) => pod.runtime?.camelVersion)
+        .filter((version): version is string => !!version) ?? [],
+    ),
+  ].sort();
+
+  return direction === 'asc' ? versions : versions.reverse();
 };
 
-export const getCamelVersionAsString = (camelInt: K8sResourceKind, direction: string): string => {
-  const versions = getCamelVersions(camelInt, direction);
-  if (versions) {
-    return versions.join(',');
-  }
-  return '';
-};
+export const getCamelVersionAsString = (camelInt: K8sResourceKind, direction: string): string =>
+  getCamelVersions(camelInt, direction).join(',');
