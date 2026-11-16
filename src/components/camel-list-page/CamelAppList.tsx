@@ -45,10 +45,10 @@ const CamelAppList: React.FC = () => {
   if (!operatorInstalled) {
     return (
       <>
-        <DocumentTitle>{t('Camel Applications')}</DocumentTitle>
+        <DocumentTitle>{t('Camel Monitors')}</DocumentTitle>
         <NamespaceBar onNamespaceChange={setActiveNamespace} />
         <div className="co-m-list">
-          <ListPageHeader title={t('Camel Applications')} />
+          <ListPageHeader title={t('Camel Monitors')} />
           <CamelAppNotAvailable />
         </div>
       </>
@@ -57,11 +57,11 @@ const CamelAppList: React.FC = () => {
 
   return (
     <>
-      <DocumentTitle>{t('Camel Applications')}</DocumentTitle>
+      <DocumentTitle>{t('Camel Monitors')}</DocumentTitle>
       <NamespaceBar onNamespaceChange={setActiveNamespace} />
       <div className="co-m-list">
         <ListPageHeader
-          title={t('Camel Applications')}
+          title={t('Camel Monitors')}
           badge={
             loaded &&
             CamelApps.length > 0 && (
@@ -78,7 +78,7 @@ const CamelAppList: React.FC = () => {
                 <CamelAppListEmpty />
               ) : (
                 <CamelDataView<CamelAppKind, CamelFilters>
-                  label={t('Camel Applications')}
+                  label={t('Camel Monitors')}
                   data={CamelApps}
                   loaded={loaded}
                   loadError={error}
