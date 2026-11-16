@@ -20,12 +20,12 @@ import { podGVK } from '../../const';
 import {
   ResourceLink,
   ResourceStatus,
-  Timestamp,
   YellowExclamationTriangleIcon,
 } from '@openshift-console/dynamic-plugin-sdk';
 import { useTranslation } from 'react-i18next';
 import Status from '@openshift-console/dynamic-plugin-sdk/lib/app/components/status/Status';
-import { formatDuration } from '../../date-utils';
+import { formatCompactDuration } from '../../date-utils';
+import CamelAppLastMessage from '../CamelAppLastMessage';
 import { Table, Tbody } from '@patternfly/react-table';
 
 type CamelAppStatusPodProps = {
@@ -53,11 +53,7 @@ const CamelAppStatusPod: React.FC<CamelAppStatusPodProps> = ({ obj: camelInt, po
   // Golang time.Time is in nanoseconds
   // TODO: add tooltip with date
   const now = Date.now();
-  const uptimeTimestamp = Date.parse(camelPod.uptimeTimestamp);
-  const duration = now - uptimeTimestamp;
-  const durationFull = formatDuration(duration, t, {
-    omitSuffix: false,
-  });
+  const uptime = formatCompactDuration(now - Date.parse(camelPod.uptimeTimestamp));
 
   const bytesToMB = (bytes: number) => (bytes / (1024 * 1024)).toFixed(0);
 
@@ -104,7 +100,7 @@ const CamelAppStatusPod: React.FC<CamelAppStatusPodProps> = ({ obj: camelInt, po
             <DescriptionListGroup>
               <DescriptionListTerm>{t('Uptime')}:</DescriptionListTerm>
               <DescriptionListDescription>
-                <Content component={ContentVariants.p}>{durationFull}</Content>
+                <Content component={ContentVariants.p}>{uptime}</Content>
               </DescriptionListDescription>
             </DescriptionListGroup>
 
@@ -221,7 +217,10 @@ const CamelAppStatusPod: React.FC<CamelAppStatusPodProps> = ({ obj: camelInt, po
                         <FlexItem>
                           <div className="camel-inline-timestamp">
                             <span>{t('Last message')}:</span>
-                            <Timestamp timestamp={camelPod.runtime.exchange.lastTimestamp} />
+                            <CamelAppLastMessage
+                              timestamp={camelPod.runtime.exchange.lastTimestamp}
+                              suffix={t('ago')}
+                            />
                           </div>
                         </FlexItem>
                       )}
