@@ -62,7 +62,7 @@ const CamelAppDetails: React.FC<CamelAppDetailsProps> = ({ obj: camelInt }) => {
   return (
     <>
       <PageSection data-test="camelapp-details-tab">
-        <Title headingLevel="h2">{t('Camel Application Details')}</Title>
+        <Title headingLevel="h2">{t('Camel Monitor Details')}</Title>
       </PageSection>
       <PageSection>
         <Grid hasGutter>

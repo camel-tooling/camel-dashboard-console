@@ -48,7 +48,7 @@
     "type": "console.navigation/href",
     "properties": {
       "id": "camel-workload",
-      "name": "%plugin__camel-dashboard-console~Camel%",
+      "name": "%plugin__camel-dashboard-console~CamelMonitors%",
       "href": "/camel",
       "perspective": "admin",
       "section": "workloads",

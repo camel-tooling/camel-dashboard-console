@@ -11,7 +11,7 @@ const CamelAppListEmpty: React.FC = () => {
   return (
     <EmptyState
       data-test="camelapp-list-empty"
-      titleText="No Camel Application found"
+      titleText="No Camel Monitor found"
       icon={CamelIcon}
       headingLevel="h2"
     >
@@ -21,7 +21,7 @@ const CamelAppListEmpty: React.FC = () => {
         <PageSection className="pf-v6-u-text-align-start">
           <Stack hasGutter>
             <Alert
-              title={t('Show a Camel Application')}
+              title={t('Show a Camel Monitor')}
               customIcon={<CamelIconAlert />}
               variant="info"
               isInline

@@ -41,7 +41,7 @@ const CamelAppTitle: React.FC<CamelAppTitleProps> = ({ name, obj }) => {
             <BreadcrumbItem>
               <Link to={getUrlList(activeNamespace)}>{t('Camel')}</Link>
             </BreadcrumbItem>
-            <BreadcrumbItem>{t('Camel Application')}</BreadcrumbItem>
+            <BreadcrumbItem>{t('Camel Monitor')}</BreadcrumbItem>
           </Breadcrumb>
         }
         title={
