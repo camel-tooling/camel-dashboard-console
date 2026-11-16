@@ -1,5 +1,4 @@
 import { TFunction } from 'i18next';
-import { getLastLanguage } from './utils';
 
 export type Duration = {
   days: number;
@@ -7,9 +6,6 @@ export type Duration = {
   minutes: number;
   seconds: number;
 };
-
-export const relativeTimeFormatter = (langArg: string) =>
-  Intl.RelativeTimeFormat ? new Intl.RelativeTimeFormat(langArg) : null;
 
 export const dateTimeFormatter = (langArg: string) =>
   new Intl.DateTimeFormat(langArg, {
@@ -31,58 +27,44 @@ function getDuration(ms: number): Duration {
   return { days, hours, minutes, seconds };
 }
 
-export function formatDuration(ms: number, t: TFunction, options?): string {
-  const langArg = getLastLanguage();
-  const duration = getDuration(ms);
-
-  // Check for null. If dateTime is null, it returns incorrect date Jan 1 1970.
-  if (!duration) {
-    return '-';
+/**
+ * Compact age, Kubernetes-style (e.g. 54s, 12m, 3h, 4d).
+ */
+export function formatCompactDuration(ms: number): string {
+  if (!Number.isFinite(ms) || ms <= 0) {
+    return '0s';
   }
 
-  const d = new Date(ms);
-  const justNow = t('Just now');
-
-  // If the event occurred less than one minute in the future, assume it's clock drift and show "Just now."
-  if (!options?.omitSuffix && ms < 60000 && ms > -60000) {
-    return justNow;
+  const totalSeconds = Math.floor(ms / 1000);
+  if (totalSeconds < 120) {
+    return `${totalSeconds}s`;
   }
 
-  // Do not attempt to handle other dates in the future.
-  if (ms < 0) {
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  if (totalMinutes < 120) {
+    return `${totalMinutes}m`;
+  }
+
+  const totalHours = Math.floor(totalMinutes / 60);
+  if (totalHours < 48) {
+    return `${totalHours}h`;
+  }
+
+  return `${Math.floor(totalHours / 24)}d`;
+}
+
+export function formatDuration(ms: number, t: TFunction): string {
+  if (!Number.isFinite(ms) || ms < 0) {
     return '-';
   }
 
   const { days, hours, minutes } = getDuration(ms);
 
-  if (options?.omitSuffix) {
-    if (days) {
-      return t('{{count}} day', { count: days });
-    }
-    if (hours) {
-      return t('{{count}} hour', { count: hours });
-    }
-    return t('{{count}} minute', { count: minutes });
-  }
-
-  // Fallback to normal date/time formatting if Intl.RelativeTimeFormat is not
-  // available. This is the case for older Safari versions.
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat#browser_compatibility
-  if (!relativeTimeFormatter(langArg)) {
-    return dateTimeFormatter(langArg).format(d);
-  }
-
-  if (!days && !hours && !minutes) {
-    return justNow;
-  }
-
   if (days) {
-    return relativeTimeFormatter(langArg).format(-days, 'day');
+    return t('{{count}} day', { count: days });
   }
-
   if (hours) {
-    return relativeTimeFormatter(langArg).format(-hours, 'hour');
+    return t('{{count}} hour', { count: hours });
   }
-
-  return relativeTimeFormatter(langArg).format(-minutes, 'minute');
+  return t('{{count}} minute', { count: minutes });
 }

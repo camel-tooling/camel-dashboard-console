@@ -13,11 +13,12 @@ import {
   Title,
 } from '@patternfly/react-core';
 import { Table, Tbody } from '@patternfly/react-table';
-import { K8sResourceConditionStatus, Timestamp } from '@openshift-console/dynamic-plugin-sdk';
+import { K8sResourceConditionStatus } from '@openshift-console/dynamic-plugin-sdk';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { useTranslation } from 'react-i18next';
 import { CamelAppKind } from '../../types';
 import CamelAppHealth from '../camel-list-page/CamelAppHealth';
+import CamelAppLastMessage from '../CamelAppLastMessage';
 import { PopoverCamelHealth } from './CamelAppHealthPopover';
 import { formatDuration } from '../../date-utils';
 
@@ -157,8 +158,9 @@ const CamelAppHealthCard: React.FC<CamelAppHealthCardProps> = ({ obj: camelInt }
                       <tr>
                         <td>{t('Last message')}:</td>
                         <td>
-                          <Timestamp
+                          <CamelAppLastMessage
                             timestamp={camelInt.status.sliExchangeSuccessRate.lastTimestamp}
+                            suffix={t('ago')}
                           />
                         </td>
                       </tr>
@@ -171,7 +173,6 @@ const CamelAppHealthCard: React.FC<CamelAppHealthCardProps> = ({ obj: camelInt }
                         {formatDuration(
                           camelInt.status.sliExchangeSuccessRate.samplingInterval / 1000000,
                           t,
-                          { omitSuffix: true },
                         )}
                       </td>
                     </tr>
