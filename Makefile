@@ -53,6 +53,16 @@ CUSTOM_PLUGIN_CHART_VERSION ?= $(PLUGIN_CHART_VERSION)
 # =======================
 #
 
+# the required node major version, taken from .nvmrc
+NODE_MAJOR := $(shell cat .nvmrc 2> /dev/null)
+
+node:
+ifeq (, $(shell command -v node 2> /dev/null))
+	$(error "No node found in PATH. Please install Node $(NODE_MAJOR) (see .nvmrc) and re-run")
+endif
+ifneq ($(NODE_MAJOR),$(shell node -v 2> /dev/null | sed -E 's/^v([0-9]+).*/\1/'))
+	$(error "Node $(NODE_MAJOR) required (see .nvmrc), found: $(shell node -v 2> /dev/null)")
+endif
 
 yarn:
 ifeq (, $(shell command -v yarn 2> /dev/null))
@@ -74,7 +84,7 @@ ifeq (, $(shell command -v helm 2> /dev/null))
 	$(error "No helm found in PATH. Please install and re-run")
 endif
 
-.PHONY: yarn podman oc helm
+.PHONY: node yarn podman oc helm
 
 #
 # =========================
@@ -90,10 +100,10 @@ endif
 #
 #== Sets up yarn by installing all dependencies
 #
-#=== Calls: yarn
+#=== Calls: node, yarn
 #
 #---
-setup: yarn
+setup: node yarn
 	@echo "####### Setup $(PLUGIN_NAME) ..."
 	yarn install
 
