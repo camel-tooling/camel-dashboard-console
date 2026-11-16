@@ -5,8 +5,8 @@ test.describe('Camel Dashboard Console - List Page', () => {
     await listPage.goto();
   });
 
-  test('displays the Camel Applications list page', async ({ listPage }) => {
-    await expect(listPage.heading).toContainText('Camel Applications');
+  test('displays the Camel Monitors list page', async ({ listPage }) => {
+    await expect(listPage.heading).toContainText('Camel Monitors');
     await expect(listPage.namespaceBar).toBeVisible();
   });
 
@@ -30,6 +30,6 @@ test.describe('Camel Dashboard Console - List Page', () => {
     await consolePage.navigateToCamel();
 
     await expect(page).toHaveURL(/\/camel/);
-    await expect(listPage.heading).toContainText('Camel Applications');
+    await expect(listPage.heading).toContainText('Camel Monitors');
   });
 });
