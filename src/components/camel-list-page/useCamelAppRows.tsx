@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { K8sResourceConditionStatus, Timestamp } from '@openshift-console/dynamic-plugin-sdk';
+import { K8sResourceConditionStatus } from '@openshift-console/dynamic-plugin-sdk';
 import Status from '@openshift-console/dynamic-plugin-sdk/lib/app/components/status/Status';
 import { Label, Tooltip } from '@patternfly/react-core';
 import {
@@ -14,6 +14,7 @@ import { Link } from 'react-router';
 import { CamelAppKind } from '../../types';
 import { CamelDataViewColumn, CamelDataViewTd, nameCellProps } from './CamelDataView';
 import CamelAppHealth from './CamelAppHealth';
+import CamelAppLastMessage from '../CamelAppLastMessage';
 import CamelImage from '@images/camel.svg';
 import {
   getStatus,
@@ -33,7 +34,7 @@ export const useCamelAppRows = () => {
       tableColumns: CamelDataViewColumn<CamelAppKind>[],
     ): CamelDataViewTd[][] => {
       return data.map((obj) => {
-        const lastMessageDate = getLastMessageTimestamp(obj, 'asc');
+        const lastMessageDate = getLastMessageTimestamp(obj);
         const upgradeCondition = getUpgradeAvailableCondition(obj);
 
         const rowCells: Record<string, { cell: React.ReactNode; props?: Record<string, unknown> }> =
@@ -106,7 +107,7 @@ export const useCamelAppRows = () => {
                 ),
             },
             lastmessage: {
-              cell: lastMessageDate ? <Timestamp timestamp={lastMessageDate} /> : '-',
+              cell: lastMessageDate ? <CamelAppLastMessage timestamp={lastMessageDate} /> : '-',
             },
           };
 
