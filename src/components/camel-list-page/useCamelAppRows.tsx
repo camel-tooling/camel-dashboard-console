@@ -18,6 +18,7 @@ import CamelAppStatus from '../CamelAppStatus';
 import CamelImage from '@images/camel.svg';
 import {
   getStatus,
+  getStatusDisplay,
   getRuntimeProvider,
   getCamelHealth,
   getUpgradeAvailableCondition,
@@ -69,7 +70,7 @@ export const useCamelAppRows = () => {
               ),
             },
             status: {
-              cell: <CamelAppStatus status={getStatus(obj)} />,
+              cell: <CamelAppStatus status={getStatus(obj)} title={getStatusDisplay(obj)} />,
             },
             health: {
               cell: <CamelAppHealth health={getCamelHealth(obj)} />,

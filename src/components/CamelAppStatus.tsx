@@ -4,14 +4,15 @@ import { StatusComponent, StatusIconAndText } from '@openshift-console/dynamic-p
 
 type CamelAppStatusProps = {
   status?: string;
+  title?: string;
 };
 
-const CamelAppStatus: React.FC<CamelAppStatusProps> = ({ status }) => {
+const CamelAppStatus: React.FC<CamelAppStatusProps> = ({ status, title }) => {
   if (status === 'Paused') {
-    return <StatusIconAndText title={status} icon={<PauseCircleIcon />} />;
+    return <StatusIconAndText title={title ?? status} icon={<PauseCircleIcon />} />;
   }
 
-  return <StatusComponent status={status} />;
+  return <StatusComponent status={status} title={title} />;
 };
 
 export default CamelAppStatus;
