@@ -4,6 +4,19 @@ import { HealthStatus, getHealthStatus } from './camel-health-utils';
 
 export const getStatus = (obj: CamelAppKind): string => obj.status?.phase ?? 'Unknown';
 
+export const getRunningPodsCount = (obj: CamelAppKind): number =>
+  obj.status?.pods?.filter((pod) => pod.status === 'Running').length ?? 0;
+
+// Display the number of running Pods next to the status, e.g. "Running (2)".
+export const getStatusDisplay = (obj: CamelAppKind): string => {
+  const status = getStatus(obj);
+  if (status !== 'Running') {
+    return status;
+  }
+  const runningPods = getRunningPodsCount(obj);
+  return runningPods > 0 ? `${status} (${runningPods})` : status;
+};
+
 export const getRuntimeProvider = (obj: CamelAppKind): string =>
   obj.status?.pods?.[0]?.runtime?.runtimeProvider ?? '';
 
