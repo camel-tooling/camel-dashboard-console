@@ -6,7 +6,7 @@ import { ALL_NAMESPACES_KEY } from '../../const';
 import { ResourceStatus, useActiveNamespace } from '@openshift-console/dynamic-plugin-sdk';
 import { PageHeader } from '@patternfly/react-component-groups';
 import { CamelAppKind } from '../../types';
-import Status from '@openshift-console/dynamic-plugin-sdk/lib/app/components/status/Status';
+import CamelAppStatus from '../CamelAppStatus';
 import CamelImage from '@images/camel.svg';
 import '../../camel.css';
 
@@ -59,7 +59,7 @@ const CamelAppTitle: React.FC<CamelAppTitleProps> = ({ name, obj }) => {
               </span>
             </span>
             <ResourceStatus>
-              <Status status={obj?.status?.phase} />
+              <CamelAppStatus status={obj?.status?.phase} />
             </ResourceStatus>
           </div>
         }
